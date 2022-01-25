@@ -1,0 +1,61 @@
+{
+	"name": "gmxlang",
+	"displayName": "gmxhelper",
+	"publisher": "Casea1998",
+	"description": "For gromacs language support ",
+	"version": "0.0.1",
+	"engines": {
+		"vscode": "^1.10.0"
+	},
+	"icon": "./images/logo.png ",
+	"categories": [
+		"Programming Languages"
+	],
+	"activationEvents": [
+		"onLanguage:mdp"
+	],
+
+	"main": "./extension.js",
+	"contributes": {
+		"commands": [
+			{
+				"command": "gmxlang.helloWorld",
+				"title": "Thank you for using this add-on"
+			}
+		],
+		"languages": [
+            {
+                "id": "mdp",
+                "aliases": [
+                    "mdp",
+                    "mdp"
+                ],
+                "extensions": [
+                    ".mdp",
+					".top"
+                ],
+                "configuration": "./syntaxes/language-configuration.json"
+            }
+        ],
+        "grammars": [
+            {
+                "language": "mdp",
+                "scopeName": "source.mdp",
+                "path": "./syntaxes/mdp.tmLanguage.json"
+            }
+        ],
+        "snippets": [
+            {
+                "language": "mdp",
+                "path": "./snippets.json"
+            }
+        ]
+
+	},
+
+	"scripts": {
+		"lint": "eslint .",
+		"pretest": "npm run lint",
+		"test": "node ./test/runTest.js"
+	}
+}
