@@ -27,25 +27,21 @@
 	],
 	"repository": {
 		"strings": {
-			"name": "string.quoted.double.mdp",
+			"name": "string.quoted.orange.mdp",
 			"begin": "\"",
 			"end": "\""
 		},
 		"numbers": {
-				"name": "constant.character.mdp",
+				"name": "constant.character.lightblue.mdp",
 				"match": "(\\b|\\-)[0-9]*[.]?[0-9]+([eE](\\+|\\-)?[0-9]*)*"
 		},
 		"notes": {
-			"name": "comment.block.documentation.mdp",
+			"name": "comment.green.mdp",
 			"match": ";.*$"
 		},
 		"keywords": {
-			"name": "keyword.control.mdp",
+			"name": "keyword.purple.mdp",
 			"match": "\\b(include|define|integrator|tinit|dt|nsteps|init-step|simulation-part|mts|mts-levels|mts-level2-factor|comm-mode|nstcomm|comm-grps|bd-fric|ld-seed|emtol|emstep|nstcgsteep|nbfgscorr|niter|fcstep|rtpi|nstxout|nstvout|nstfout|nstlog|nstcalcenergy|nstenergy|compressed-x-precision|nstxout-compressed|compressed-x-grps|energygrps|cutoff-scheme|nstlist|pbc|periodic-molecules|verlet-buffer-tolerance|rlist|coulombtype|coulomb-modifier|rcoulomb-switch|rcoulomb|epsilon-r|epsilon-rf|vdwtype|vdw-modifier|rvdw|rvdw-switch|vdw|DispCorr|table-extension|energygrp-table|fourierspacing|fourier-nx|fourier-ny|fourier-nz|pme-order|ewald-rtol-lj|lj-pme-comb-rule|ewald-geometry|epsilon-surface|tcoupl|nsttcouple|nh-chain-length|print-nose-hoover-chain-variables|tc-grps|tau-t|ref-t|pcoupl|pcoupltype|nstcouple|tau-p|compressibility|ref-p|refcoord-scaling|annealing|annealing-npoints|annealing-time|annealing-temp|gen-vel|gen-temp|gen-seed|constraints|constraint-algorithm|continuation|shake-tol|lincs-order|lincs-iter|lincs-wanangle|morse|energygrp-excl|nwall|wall-atomtype|wall-type|table|wall-r-linpot|wall-density|wall-ewald-zfac|pull|pull-cylinder-r|pull-constr-tol|pull-print-com|pull-print-components|pull-nstxout|pull-nstfout|pull-pbc-ref-prev-step-com|pull-xout-average|pull-font-average|pull-ncorrds|pull-groupl-name|pull-group1-weights|pull-group1-pbcatom|pull-coord1-type|pull-coord1-potential-provider|pull-coord1-geometry|pull-coord1-groups|pull-coord1-dim|pull-coord1-origin|pull-coord1-vec|pull-coord1-start|pull-coord1-init|pull-coord1-rate|pull-coord1-k|pull-coord1-kB|awh|awh-potential|awh-share-multisim|awh-seed|awh-nstout|awh-nstsample|awh-nsamples-update|awh-nbias|awh1-error-init|awh1-growth|awh1-equilibrate-histogram|awh1-target|awh1-target-beta-scaling|awh1-target-cutoff|awh1-user-data|rotation|disre|disre-weighting|free-energy|acc-grps|freezegrps|QMMM-grps|QMMM)\\b"
-		},
-		"include":{
-			"name":"variable.parameter.mdp",
-			"match":"#include([ ]*)*(\"+).*?(\"+)"
 		},
 		"parameters":{
 			"name":"support.function.mdp",

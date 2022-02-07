@@ -2,8 +2,19 @@
 
 All notable changes to the "gmxlang" extension will be documented in this file.
 
-Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how to structure this file.
+## Versions
 
-## [Unreleased]
+## 0.0.1
 
 - Initial release
+
+## 1.0.0 - 2022-02-07
+
+### Added
+
+-  Syntax highlighting for `gro`, `itp`, `pdb` ,`top`.
+
+### Changed
+
+- highlight colors are renewed.
+

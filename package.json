@@ -3,16 +3,20 @@
 	"displayName": "gmxhelper",
 	"publisher": "Casea1998",
 	"description": "For gromacs language support ",
-	"version": "0.0.1",
+	"version": "1.0.0",
+    "repository": {
+		"type": "git",
+		"url": "https://github.com/Zuttergutao/gmxhelper"
+	},
 	"engines": {
 		"vscode": "^1.10.0"
 	},
-	"icon": "./images/logo.png ",
+	"icon": "images/logo.png",
 	"categories": [
 		"Programming Languages"
 	],
 	"activationEvents": [
-		"onLanguage:mdp"
+		"*"
 	],
 
 	"main": "./extension.js",
@@ -27,12 +31,50 @@
             {
                 "id": "mdp",
                 "aliases": [
-                    "mdp",
                     "mdp"
                 ],
                 "extensions": [
-                    ".mdp",
-					".top"
+                    ".mdp"
+                ],
+                "configuration": "./syntaxes/language-configuration.json"
+            },
+			{
+                "id": "pdb",
+                "aliases": [
+                    "pdb"
+                ],
+                "extensions": [
+					".pdb"
+                ],
+                "configuration": "./syntaxes/language-configuration.json"
+            },
+			{
+                "id": "top",
+                "aliases": [
+                    "top"
+                ],
+                "extensions": [
+                    ".top"
+                ],
+                "configuration": "./syntaxes/language-configuration.json"
+            },
+            {
+                "id": "gro",
+                "aliases": [
+                    "gro"
+                ],
+                "extensions": [
+                    ".gro"
+                ],
+                "configuration": "./syntaxes/language-configuration.json"
+            },
+            {
+                "id": "itp",
+                "aliases": [
+                    "itp"
+                ],
+                "extensions": [
+                    ".itp"
                 ],
                 "configuration": "./syntaxes/language-configuration.json"
             }
@@ -42,8 +84,34 @@
                 "language": "mdp",
                 "scopeName": "source.mdp",
                 "path": "./syntaxes/mdp.tmLanguage.json"
+            },
+			{
+                "language": "pdb",
+                "scopeName": "source.pdb",
+                "path": "./syntaxes/pdb.tmLanguage.json"
+            },
+			{
+                "language": "top",
+                "scopeName": "source.top",
+                "path": "./syntaxes/top.tmLanguage.json"
+            },
+            {
+                "language": "gro",
+                "scopeName": "source.gro",
+                "path": "./syntaxes/gro.tmLanguage.json"
+            },
+            {
+                "language": "itp",
+                "scopeName": "source.itp",
+                "path": "./syntaxes/itp.tmLanguage.json"
             }
         ],
+		"themes": [
+			{
+				"uiTheme": "vs-dark",
+				"path": "./syntaxes/themecolor.json"
+			}
+		],
         "snippets": [
             {
                 "language": "mdp",
