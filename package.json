@@ -9,18 +9,40 @@
 		"url": "https://github.com/Zuttergutao/gmxhelper"
 	},
 	"engines": {
-		"vscode": "^1.10.0"
+		"vscode": "^1.64.0"
 	},
 	"icon": "images/logo.png",
 	"categories": [
 		"Programming Languages"
 	],
 	"activationEvents": [
-		"*"
+		"onLanguage:mdp",
+        "onLanguage:pdb",
+        "onLanguage:gro",
+        "onLanguage:itp",
+        "onLanguage:top"
 	],
 
 	"main": "./extension.js",
 	"contributes": {
+        "configuration": {
+			"type": "object",
+			"title": "GmxLang",
+			"properties": {
+				"GmxLang.nonBioTheme": {
+					"type": "string",
+					"scope": "resource",
+					"default": "Default Dark+",
+					"description": "The theme to use when not viewing a related document. Most people will want to set this to be the same as their 'workbench.colorTheme' setting"
+				},
+				"GmxLang.autoSwitchTheme": {
+					"type": "boolean",
+					"scope": "resource",
+					"default": true,
+					"description": "Enable automatically switching to GMXLANG color theme when opening a related file"
+				}
+			}
+		},
 		"commands": [
 			{
 				"command": "gmxlang.helloWorld",
@@ -108,6 +130,8 @@
         ],
 		"themes": [
 			{
+                "label": "gmxLang",
+                "id": "gmxLang",
 				"uiTheme": "vs-dark",
 				"path": "./syntaxes/themecolor.json"
 			}

@@ -13,7 +13,6 @@ Now this extension supports the following file types:
 - .mdp
 - .gro
 - .itp
-- .top
 - .pdb
 
 

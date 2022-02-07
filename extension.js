@@ -8,12 +8,44 @@ const vscode = require('vscode');
 /**
  * @param {vscode.ExtensionContext} context
  */
+ let beforeTheme = vscode.workspace.getConfiguration().get("GmxLang.nonBioTheme");
 function activate(context) {
 
 	// Use the console to output diagnostic information (console.log) and errors (console.error)
 	// This line of code will only be executed once when your extension is activated
 	console.log('Congratulations, your extension "gmxlang" is now active!');
-
+	let autoTheme = vscode.workspace.getConfiguration().get("GmxLang.autoSwitchTheme");
+	let activeEditor = vscode.window.activeTextEditor;
+	if (activeEditor) {
+		updateDecorations();
+	}
+	vscode.window.onDidChangeActiveTextEditor(editor => {
+		activeEditor = editor;
+		if (editor) {
+			updateDecorations();
+		}
+	}, null, context.subscriptions);
+	vscode.workspace.onDidChangeTextDocument(event => {
+		if (activeEditor && event.document === activeEditor.document) {
+			updateDecorations();
+		}
+	}, null, context.subscriptions);
+	function updateDecorations() {
+		if (!activeEditor) {
+			return;
+		}
+		let lang = activeEditor.document.languageId;
+		if (autoTheme) {
+			if (lang === "top" || lang === "pdb" || lang === "gro" ||
+				lang === "itp" || lang === "mdp" ) {
+				// update theme
+				vscode.workspace.getConfiguration().update("workbench.colorTheme", "gmxLang", true);
+			}
+			else {
+				vscode.workspace.getConfiguration().update("workbench.colorTheme", beforeTheme, true);
+			}
+		}
+	}
 	// The command has been defined in the package.json file
 	// Now provide the implementation of the command with  registerCommand
 	// The commandId parameter must match the command field in package.json
