@@ -1,0 +1,119 @@
+{
+    "patterns": [
+        {
+            "include": "#structure"
+        }
+    ],
+    "$schema": "https://raw.githubusercontent.com/martinring/tmlanguage/master/tmlanguage.json",
+    "scopeName": "source.gro",
+    "name": "gro",
+    "repository": {
+        "structure": {
+            "patterns": [
+                {
+                    "begin": "^([\\s\t]*(\\-)?[0-9]+)",
+                    "end": "$",
+                    "name": "constant.character.lightblue.pdb",
+                    "patterns": [
+                        {
+                            "name":"character.atom",
+                            "match":"(?<=[\\s\t]*(\\-)?[0-9]+[a-zA-Z]+)[\\s\t]+(([A-Za-z]+[0-9]+)|([a-zA-z]+))(?=([\\s\t]+[0-9]+))"
+                        },
+ 
+                    
+                        {
+                            "name": "aaA",
+                            "match": "(?<=[\\s\t]*(\\-)?[0-9]+)ALA"
+                        },
+                        {
+                            "name": "aaR",
+                            "match": "(?<=[\\s\t]*(\\-)?[0-9]+)ARG"
+                        },
+                        {
+                            "name": "aaN",
+                            "match": "(?<=[\\s\t]*(\\-)?[0-9]+)ASN"
+                        },
+                        {
+                            "name": "aaD",
+                            "match": "(?<=[\\s\t]*(\\-)?[0-9]+)ASP"
+                        },
+                        {
+                            "name": "aaC",
+                            "match": "(?<=[\\s\t]*(\\-)?[0-9]+)CYS"
+                        },
+                        {
+                            "name": "aaQ",
+                            "match": "(?<=[\\s\t]*(\\-)?[0-9]+)GLN"
+                        },
+                        {
+                            "name": "aaE",
+                            "match": "(?<=[\\s\t]*(\\-)?[0-9]+)GLU"
+                        },
+                        {
+                            "name": "aaG",
+                            "match": "(?<=[\\s\t]*(\\-)?[0-9]+)GLY"
+                        },
+                        {
+                            "name": "aaH",
+                            "match": "(?<=[\\s\t]*(\\-)?[0-9]+)HIS"
+                        },
+                        {
+                            "name": "aaI",
+                            "match": "(?<=[\\s\t]*(\\-)?[0-9]+)ILE"
+                        },
+                        {
+                            "name": "aaL",
+                            "match": "(?<=[\\s\t]*(\\-)?[0-9]+)LEU"
+                        },
+                        {
+                            "name": "aaK",
+                            "match": "(?<=[\\s\t]*(\\-)?[0-9]+)LYS"
+                        },
+                        {
+                            "name": "aaM",
+                            "match": "(?<=[\\s\t]*(\\-)?[0-9]+)MET"
+                        },
+                        {
+                            "name": "aaF",
+                            "match": "(?<=[\\s\t]*(\\-)?[0-9]+)PHE"
+                        },
+                        {
+                            "name": "aaP",
+                            "match": "(?<=[\\s\t]*(\\-)?[0-9]+)PRO"
+                        },
+                        {
+                            "name": "aaS",
+                            "match": "(?<=[\\s\t]*(\\-)?[0-9]+)SER"
+                        },
+                        {
+                            "name": "aaT",
+                            "match": "(?<=[\\s\t]*(\\-)?[0-9]+)THR"
+                        },
+                        {
+                            "name": "aaW",
+                            "match": "(?<=[\\s\t]*(\\-)?[0-9]+)TRP"
+                        },
+                        {
+                            "name": "aaY",
+                            "match": "(?<=[\\s\t]*(\\-)?[0-9]+)TYR"
+                        },
+                        {
+                            "name": "aaV",
+                            "match": "(?<=[\\s\t]*(\\-)?[0-9]+)VAL"
+                        },
+                        {
+                            "name":"water",
+                            "match":"(?<=[\\s\t]*(\\-)?[0-9]+)SOL"
+                        },
+                        {
+                            "name":"character.ligand",
+                            "match":"(?<=[\\s\t]*(\\-)?[0-9]+)[a-zA-Z]+"
+                        }
+                    ]
+                }
+                
+                       
+            ]
+        }
+    }
+}
