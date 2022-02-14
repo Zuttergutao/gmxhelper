@@ -37,6 +37,15 @@
             }
         },
         {
+            "name":"keyword.white",
+            "scope":"keyword.white",
+            "settings":{
+                "fontStyle":"",
+                "foreground":"#BBBBBB",
+                "background":"#000000"
+            }
+        },
+        {
             "name":"variable.parameter",
             "scope":"variable.parameter",
             "settings":{

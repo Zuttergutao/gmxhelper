@@ -11,13 +11,17 @@
         "structure": {
             "patterns": [
                 {
+                    "name":"constant.character.lightblue.gro",
+                    "match":"^[a-zA-Z]+[0-9a-zA-Z\\s\\)\\(\\:\\,\\_\\-\\+\\=\\.]+$"
+                },
+                {
                     "begin": "^([\\s\t]*(\\-)?[0-9]+)",
                     "end": "$",
-                    "name": "constant.character.lightblue.pdb",
+                    "name": "constant.character.lightblue.gro",
                     "patterns": [
                         {
                             "name":"character.atom",
-                            "match":"(?<=[\\s\t]*(\\-)?[0-9]+[a-zA-Z]+)[\\s\t]+(([A-Za-z]+[0-9]+)|([a-zA-z]+))(?=([\\s\t]+[0-9]+))"
+                            "match":"(?<=[\\s\t]*(\\-)?[0-9]+[\\s\\t]*[a-zA-Z]+)[\\s\t]+(([A-Za-z]+[0-9]+)|([a-zA-z]+))(?=([\\s\t]+[0-9]+))"
                         },
  
                     
@@ -107,7 +111,7 @@
                         },
                         {
                             "name":"character.ligand",
-                            "match":"(?<=[\\s\t]*(\\-)?[0-9]+)[a-zA-Z]+"
+                            "match":"(?<=[\\s\t]*(\\-)?[0-9]+[\\s\\t]*)[a-zA-Z]+(?=[\\s\\t]+[a-zA-Z]+)"
                         }
                     ]
                 }

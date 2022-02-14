@@ -11,16 +11,12 @@
         "structure": {
             "patterns": [
                 {
-                    "name": "comment.green.top",
-                    "match": ";.*$"
+                    "name": "comment.green.itp",
+                    "match": "(;.*$|\\*.*$)"
                 },
                 {
                     "name": "variable.parameter",
-                    "match": "#include([ ]*)*(\"+).*?(\"+)"
-                },
-                {
-                    "name": "variable.parameter",
-                    "match": "(#ifdef(.*)|#endif)"
+                    "match": "(#ifdef(.*)|#endif|#define(.*)|#include(.*)|#ifndef(.*)|(#else))"
                 },
                 {
                     "name": "support.function",
@@ -31,13 +27,33 @@
                     "match": "(\\b|\\-)[0-9]*[.]?[0-9]+([eE](\\+|\\-)?[0-9]*)*"
                 },
                 {
+                    "name":"character.italic",
+                    "match":"[a-zA-Z0-9\\+\\-\\_]+[\\s\\t]+((?=[0-9]+$)|(?=$))"
+                },
+                {
+                    "begin": "^(([\\s]+[a-zA-Z]+)|([a-zA-Z]+))",
+                    "end": "$",
+                    "name": "character.type",
+                    "patterns": [
+                        {
+                            "name": "constant.character.lightblue",
+                            "match": "(\\b|\\-)[0-9]*[.]?[0-9]+([eE](\\+|\\-)?[0-9]*)*"
+                        },
+                        {
+                            "name":"comment.green.itp",
+                            "match":"(;.*$)"
+
+                        }
+                    ]
+                },
+                {
                     "begin": "^([\\s]+[0-9]+)",
                     "end": "$",
                     "name": "constant.character.lightblue",
                     "patterns": [
                         {
                             "name": "character.type",
-                            "match": "(?<=[0-9]+)[\\s]+(([A-Za-z]+[0-9]*[a-zA-Z]*)|([a-zA-z]+))[\\s]+(?=[0-9]+)"
+                            "match": "(?<=[0-9]+)[\\s]+(([A-Za-z]+[0-9(\\_)a-zA-Z]*)|([a-zA-z]+))[\\s]+(?=[0-9]+)"
                         },
                         {
                             "name": "character.atom",
@@ -128,18 +144,6 @@
                             "match":"(?<=[\\s\\t]+[0-9]+[\\s\\t]+)[a-zA-Z]+[\\s\\t]+(?=(([A-Za-z]+[0-9]+[a-zA-Z]*)|([a-zA-z]+))[\\s\\t]+)"
                         }
                     ]
-                },
-                {
-                    "begin": "^(([\\s]+[a-zA-Z]+)|([a-zA-Z]+))",
-                    "end": "$",
-                    "name": "character.italic",
-                    "patterns": [
-                        {
-                            "name": "constant.character.lightblue.pdb",
-                            "match": "[\\s]+[0-9]+"
-                        }
-                    ]
-    
                 }
                 
             ]

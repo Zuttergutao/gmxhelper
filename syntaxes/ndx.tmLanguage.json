@@ -1,0 +1,25 @@
+{
+    "patterns": [
+        {
+            "include": "#structure"
+        }
+    ],
+    "$schema": "https://raw.githubusercontent.com/martinring/tmlanguage/master/tmlanguage.json",
+    "scopeName": "source.ndx",
+    "name": "ndx",
+    "repository": {
+        "structure": {
+            "patterns": [
+                {
+                    "name": "support.function",
+                    "match": "\\[.*?\\]"
+                },
+                {
+                    "begin":"^(([0-9]+)|([\\s\\t]+[0-9]+))",
+                    "end":"$",
+                    "name":"constant.character.lightblue"
+                }
+            ]
+        }
+    }
+}

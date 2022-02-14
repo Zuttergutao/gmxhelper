@@ -16,7 +16,7 @@
                 },
                 {
                     "name": "variable.parameter",
-                    "match": "(#ifdef(.*)|#endif|#define(.*)|#include(.*))"
+                    "match": "(#ifdef(.*)|#endif|#define(.*)|#include(.*)|#ifndef(.*)|(#else))"
                 },
                 {
                     "name": "support.function",
@@ -27,9 +27,13 @@
                     "match": "(\\b|\\-)[0-9]*[.]?[0-9]+([eE](\\+|\\-)?[0-9]*)*"
                 },
                 {
+                    "name":"character.italic",
+                    "match":"[a-zA-Z0-9\\+\\-\\_]+[\\s\\t]+((?=[0-9]+$)|(?=$))"
+                },
+                {
                     "begin": "^(([\\s]+[a-zA-Z]+)|([a-zA-Z]+))",
                     "end": "$",
-                    "name": "character.atom",
+                    "name": "character.type",
                     "patterns": [
                         {
                             "name": "constant.character.lightblue",
@@ -41,7 +45,105 @@
 
                         }
                     ]
-    
+                },
+                {
+                    "begin": "^([\\s]+[0-9]+)",
+                    "end": "$",
+                    "name": "constant.character.lightblue",
+                    "patterns": [
+                        {
+                            "name": "character.type",
+                            "match": "(?<=[0-9]+)[\\s]+(([A-Za-z]+[0-9(\\_)a-zA-Z]*)|([a-zA-z]+))[\\s]+(?=[0-9]+)"
+                        },
+                        {
+                            "name": "character.atom",
+                            "match": "(?<=[a-zA-Z]+[\\s]+)(([A-Za-z]+[0-9]+[a-zA-Z]*)|([a-zA-z]+))[\\s]+(?=[0-9]+)"
+                        },
+                        {
+                            "name": "aaA",
+                            "match": "[\\s\\t]+ALA"
+                        },
+                        {
+                            "name": "aaR",
+                            "match": "[\\s\\t]+ARG"
+                        },
+                        {
+                            "name": "aaN",
+                            "match": "[\\s\\t]+ASN"
+                        },
+                        {
+                            "name": "aaD",
+                            "match": "[\\s\\t]+ASP"
+                        },
+                        {
+                            "name": "aaC",
+                            "match": "[\\s\\t]+CYS"
+                        },
+                        {
+                            "name": "aaQ",
+                            "match": "[\\s\\t]+GLN"
+                        },
+                        {
+                            "name": "aaE",
+                            "match": "[\\s\\t]+GLU"
+                        },
+                        {
+                            "name": "aaG",
+                            "match": "[\\s\\t]+GLY"
+                        },
+                        {
+                            "name": "aaH",
+                            "match": "[\\s\\t]+HIS"
+                        },
+                        {
+                            "name": "aaI",
+                            "match": "[\\s\\t]+ILE"
+                        },
+                        {
+                            "name": "aaL",
+                            "match": "[\\s\\t]+LEU"
+                        },
+                        {
+                            "name": "aaK",
+                            "match": "[\\s\\t]+LYS"
+                        },
+                        {
+                            "name": "aaM",
+                            "match": "[\\s\\t]+MET"
+                        },
+                        {
+                            "name": "aaF",
+                            "match": "[\\s\\t]+PHE"
+                        },
+                        {
+                            "name": "aaP",
+                            "match": "[\\s\\t]+PRO"
+                        },
+                        {
+                            "name": "aaS",
+                            "match": "[\\s\\t]+SER"
+                        },
+                        {
+                            "name": "aaT",
+                            "match": "[\\s\\t]+THR"
+                        },
+                        {
+                            "name": "aaW",
+                            "match": "[\\s\\t]+TRP"
+                        },
+                        {
+                            "name": "aaY",
+                            "match": "[\\s\\t]+TYR"
+                        },
+                        {
+                            "name": "aaV",
+                            "match": "[\\s\\t]+VAL"
+                        },
+                        {
+                            "name":"character.ligand",
+                            "match":"(?<=[\\s\\t]+[0-9]+[\\s\\t]+)[a-zA-Z]+[\\s\\t]+(?=(([A-Za-z]+[0-9]+[a-zA-Z]*)|([a-zA-z]+))[\\s\\t]+)"
+                        }
+                    ]
                 }
                 
             ]

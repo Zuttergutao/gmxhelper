@@ -1,0 +1,32 @@
+{
+    "$schema": "https://raw.githubusercontent.com/martinring/tmlanguage/master/tmlanguage.json",
+    "name": "mdp",
+    "scopeName": "source.xvg",
+    "fileTypes": [
+        "xvg"
+    ],
+    "patterns": [
+        {
+            "include": "#strings"
+        }
+    ],
+    "repository": {
+        "strings": {
+            "patterns": [
+                {
+                    "name": "string.quoted.orange.mdp",
+                    "match": "@.*$"
+                },
+                {
+                    "name": "comment.green.mdp",
+                    "match": "#.*$"
+                },
+                {
+                    "begin": "^([\\s\\t]*[0-9]+)",
+                    "end": "$",
+                    "name": "constant.character.lightblue.xvg"
+                }
+            ]
+        }
+    }
+}

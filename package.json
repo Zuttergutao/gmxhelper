@@ -3,13 +3,13 @@
 	"displayName": "gmxhelper",
 	"publisher": "Casea1998",
 	"description": "For gromacs language support ",
-	"version": "1.0.0",
+	"version": "1.0.5",
     "repository": {
 		"type": "git",
 		"url": "https://github.com/Zuttergutao/gmxhelper"
 	},
 	"engines": {
-		"vscode": "^1.64.0"
+		"vscode": "^1.25.0"
 	},
 	"icon": "images/logo.png",
 	"categories": [
@@ -20,7 +20,9 @@
         "onLanguage:pdb",
         "onLanguage:gro",
         "onLanguage:itp",
-        "onLanguage:top"
+        "onLanguage:top",
+        "onLanguage:ndx",
+        "onLanguage:xvg"
 	],
 
 	"main": "./extension.js",
@@ -99,6 +101,26 @@
                     ".itp"
                 ],
                 "configuration": "./syntaxes/language-configuration.json"
+            },
+            {
+                "id": "ndx",
+                "aliases": [
+                    "ndx"
+                ],
+                "extensions": [
+                    ".ndx"
+                ],
+                "configuration": "./syntaxes/language-configuration.json"
+            },
+            {
+                "id": "xvg",
+                "aliases": [
+                    "xvg"
+                ],
+                "extensions": [
+                    ".xvg"
+                ],
+                "configuration": "./syntaxes/language-configuration.json"
             }
         ],
         "grammars": [
@@ -126,6 +148,16 @@
                 "language": "itp",
                 "scopeName": "source.itp",
                 "path": "./syntaxes/itp.tmLanguage.json"
+            },
+            {
+                "language": "xvg",
+                "scopeName": "source.xvg",
+                "path": "./syntaxes/xvg.tmLanguage.json"
+            },
+            {
+                "language": "ndx",
+                "scopeName": "source.ndx",
+                "path": "./syntaxes/ndx.tmLanguage.json"
             }
         ],
 		"themes": [
