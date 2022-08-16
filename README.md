@@ -1,9 +1,15 @@
 # gmxlang README
 
 The gmxlang extension was developed for my research of molecular dynamics.
-Up to now, this extension can highlight keywords(supported file: `.gro`, `.mdp`, `.itp`,`.top`, `.pdb`, `.ndx`, `.xvg`) and provide snippets for `.mdp`file。
+Up to now, this extension can highlight keywords(supported file: `.gro`, `.mdp`, `.itp`,`.top`, `.pdb`, `.ndx`, `.xvg`, `.fasta`, `.mol2`) and provide snippets for `.mdp`file。
 
-Additionally, code formatting feature `.mdp` and `.gro` were supported.
+Additionally, code formatting features `.mdp` and `.gro` were supported.
+
+Detailed information on amino acids is provided as a hover when opening the `fasta` file. 
+
+Detailed information on parameters is provided as a hover when opening the `mdp` file. 
+
+Npw, Section Folding is supported!
 
 ## Features
 
@@ -18,40 +24,28 @@ Now this extension supports the following file types:
 - .pdb
 - .xvg
 - .ndx
+- .mol2
+- .fasta
 
 
 ### Main function
-- highlight different amino acids in differents colors.
+- highlight different amino acids in different colors.
 
 - highlight atom, type name and etc.
 
-![4](https://s4.ax1x.com/2022/02/07/HMGZlQ.png)
+<div align=center><img src="https://s4.ax1x.com/2022/02/07/HMGZlQ.png" alt="4" style="zoom:33%;" />
 
 - code formatting for `mdp` and `gro`
-  ![formatting](https://s4.ax1x.com/2022/02/11/HajiUe.gif)
+  
+  <div align=center><img src="https://s4.ax1x.com/2022/02/11/HajiUe.gif" alt="formatting" style="zoom:33%;" />
   
 - provide common `.mdp` code for easy use.
-![autocompletion](https://s4.ax1x.com/2022/02/07/HMGeyj.png)
 
-## Release Notes
+  <div align=center><img src="https://s4.ax1x.com/2022/02/07/HMGeyj.png" alt="autocompletion" style="zoom:33%;" />
 
-### 0.0.1
+- hover information for amino acids
+  ![bp32M8.md.gif](https://s4.ax1x.com/2022/02/22/bp32M8.gif)
 
-Initial release of gromacs input file extension for a test
 
-### 1.0.0
 
-Support more file types
 
-### 1.0.3
-
-Fix some bugs and add new syntaxes highlightlings.
-
-### 1.0.4
-
-Add code formatting feature `.mdp` and `.gro`
-
-Also fix bugs for linux environment
----
-
-**Enjoy!**

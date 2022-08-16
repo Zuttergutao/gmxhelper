@@ -11,21 +11,21 @@
         "structure": {
             "patterns": [
                 {
-                    "begin": "^(ATOM)",
+                    "begin": "^(ATOM|SEQRES)",
                     "end": "$",
                     "name": "constant.character.lightblue.pdb",
                     "patterns": [
                         {
-                            "name":"character.type",
-                            "match":"(?<=(([A-Za-z]+[0-9]+)|([a-zA-z]+)|([A-Za-z]*[0-9]*[\\+\\-]?))[\\s\t]+)[a-zA-Z]+(?=([\\s\t]+[0-9]+))"
+                            "name": "character.type",
+                            "match": "(?<=(([A-Za-z]+[0-9]+)|([a-zA-z]+)|([A-Za-z]*[0-9]*[\\+\\-]?))[\\s\t]+)[a-zA-Z]+(?=([\\s\t]+[\\-0-9]+))"
                         },
                         {
-                            "name":"character.atom",
-                            "match":"(?<=[\\s\t]+[0-9]+[\\s\t]+)(([A-Za-z]+[0-9]+)|([a-zA-z]+[\\+\\-]?))(?=[\\s]+[a-zA-Z]+)"
+                            "name": "character.atom",
+                            "match": "(?<=[\\s\t]+[0-9]+[\\s\t]+)(([0-9A-Za-z]+)|([a-zA-z]+[\\+\\-]?))(?=[\\s]+[a-zA-Z]+)"
                         },
                         {
-                            "name":"character.ligand",
-                            "match":"(?<=(([A-Za-z]+[0-9]+)|([a-zA-z]+)|([A-Za-z]+[0-9]*[\\+\\-]?))[\\s\t]+)([a-zA-Z]+[\\+\\-]?|[a-zA-Z]+[0-9]+)(?=([\\s\t]+[a-zA-Z]+))"
+                            "name": "character.ligand",
+                            "match": "(?<=(([A-Za-z]+[0-9]+)|([a-zA-z]+)|([A-Za-z]+[0-9]*[\\+\\-]?))[\\s\t]+)([a-zA-Z]+[\\+\\-]?|[a-zA-Z]+[0-9]+)(?=([\\s\t]+[a-zA-Z]+))"
                         },
                         {
                             "name": "aaA",
@@ -110,21 +110,21 @@
                     ]
                 },
                 {
-                    "begin":"^(HETATM)",
-                    "end":"$",
-                    "name":"constant.character.lightblue.pdb",
+                    "begin": "^(HETATM)",
+                    "end": "$",
+                    "name": "constant.character.lightblue.pdb",
                     "patterns": [
                         {
-                            "name":"character.type",
-                            "match":"(?<=(([A-Za-z]+[0-9]+)|([a-zA-z]+))[\\s\t]+)[a-zA-Z]+(?=([\\s\t]+[0-9]+))"
+                            "name": "character.type",
+                            "match": "(?<=(([A-Za-z]+[0-9]+)|([a-zA-z]+))[\\s\t]+)[a-zA-Z]+(?=([\\s\t]+[0-9]+))"
                         },
                         {
-                            "name":"character.atom",
-                            "match":"(?<=[\\s\t]+[0-9]+[\\s\t]+)(([A-Za-z]+[0-9]+)|([a-zA-z]+))(?=[\\s]+[a-zA-Z]+)"
+                            "name": "character.atom",
+                            "match": "(?<=[\\s\t]+[0-9]+[\\s\t]+)(([A-Za-z]+[0-9]+)|([a-zA-z]+))(?=[\\s]+[a-zA-Z]+)"
                         },
                         {
-                            "name":"character.ligand",
-                            "match":"(?<=(([A-Za-z]+[0-9]+)|([a-zA-z]+)|([A-Za-z]+[0-9]*[\\+\\-]?))[\\s\t]+)([a-zA-Z]+[\\+\\-]?|[a-zA-Z]+[0-9]+)(?=([\\s\t]+[a-zA-Z]+))"
+                            "name": "character.ligand",
+                            "match": "(?<=(([A-Za-z]+[0-9]+)|([a-zA-z]+)|([A-Za-z]+[0-9]*[\\+\\-]?))[\\s\t]+)([a-zA-Z]+[\\+\\-]?|[a-zA-Z]+[0-9]+)(?=([\\s\t]+[a-zA-Z]+))"
                         },
                         {
                             "name": "water",
@@ -133,14 +133,420 @@
                     ]
                 },
                 {
-                    "begin":"^(CONECT|MASTER|END|MODEL|TER)",
-                    "end":"$",
-                    "name":"constant.character.lightblue.pdb"
+                    "begin": "^(CONECT|MASTER|END|MODEL|TER)",
+                    "end": "$",
+                    "name": "constant.character.lightblue.pdb"
                 },
                 {
-                    "begin":"^(HEADER|TITLE|COMPND|SOURCE|KEYWDS|AUTHOR|EXPDTA|REVDAT|JRNL|REMARK|SEQRES|HET|HETNAM|FORMUL|HELIX|SHEET|LINK|SITE|CRYST1|ORIGX|SCALE|DBREF)",
+                    "begin": "^(TITLE|HEADER)",
+                    "end": "$",
+                    "name": "comment.green",
+                    "patterns":[
+                        {
+                            "name":"character.title",
+                            "begin":"(?<=(TITLE)[\\s]+)",
+                            "end":"$"
+                        }
+                    ]
+                },
+                {
+                    "begin": "^REMARK",
+                    "end": "$",
+                    "name": "comment.green",
+                    "patterns": [
+                        {
+                            "name": "water",
+                            "match": "(?<=(RESOLUTION.))[\\s\\.0-9]+(?=(ANGSTROMS.))"
+                        }
+                    ]
+                },
+                {
+                    "begin":"^COMPND",
+                    "end":"$",
+                    "name":"character.darkyellow",
+                    "patterns":[
+                        {
+                            "match":"(?<=[\\s]+(MOLECULE:))[a-zA-Z\\s\\(\\)]+(?=;)",
+                            "name":"character.title"
+                        },
+                        {
+                            "match":"[\\s]+[A-Z](?=(,|;))",
+                            "name":"character.type"
+                        },
+                        {
+                            "begin":"(?<=(FRAGMENT:))",
+                            "end":"$",
+                            "name":"constant.character.lightblue"
+                        }
+                    ]
+                },
+                {
+                    "begin":"^(REVDAT)",
                     "end":"$",
                     "name":"comment.green"
+                },
+                {
+                    "begin":"^(JRNL)",
+                    "end":"$",
+                    "name":"character.paper"
+                },
+                {
+                    "begin":"^SOURCE",
+                    "end":"$",
+                    "name":"comment.lightblue",
+                    "patterns":[
+                        {
+                            "name":"variable.parameter",
+                            "begin":"(?<=(ORGANISM_SCIENTIFIC:))",
+                            "end":"$"
+                        },
+                        {
+                            "name":"variable.parameter",
+                            "begin":"(?<=(EXPRESSION[\\_A-Za-z]+\\:))",
+                            "end":"$"
+                        }
+                    ]
+                },
+                {
+                    "begin":"^DBREF",
+                    "end":"$",
+                    "name":"comment.pink"
+                },
+                {
+                    "begin":"^SEQADV",
+                    "end":"$",
+                    "name":"comment.grayblue"
+                },
+                {
+                    "begin":"^FORMUL",
+                    "end":"$",
+                    "name":"comment.lightgreen"
+                },
+                {
+                    "name":"keyword.darkyellow",
+                    "begin":"^KEYWDS",
+                    "end":"$"
+                },
+                {
+                    "name":"protein.helix",
+                    "begin":"^HELIX",
+                    "end":"$",
+                    "patterns":[
+                        {
+                            "name":"character.type",
+                            "match":"(?<=([A-Z]+[\\s]+))[A-Z](?=([\\s]+[0-9]+))"
+                        },
+                        {
+                            "name": "aaA",
+                            "match": "[\\s\\t]+ALA"
+                        },
+                        {
+                            "name": "aaR",
+                            "match": "[\\s\\t]+ARG"
+                        },
+                        {
+                            "name": "aaN",
+                            "match": "[\\s\\t]+ASN"
+                        },
+                        {
+                            "name": "aaD",
+                            "match": "[\\s\\t]+ASP"
+                        },
+                        {
+                            "name": "aaC",
+                            "match": "[\\s\\t]+CYS"
+                        },
+                        {
+                            "name": "aaQ",
+                            "match": "[\\s\\t]+GLN"
+                        },
+                        {
+                            "name": "aaE",
+                            "match": "[\\s\\t]+GLU"
+                        },
+                        {
+                            "name": "aaG",
+                            "match": "[\\s\\t]+GLY"
+                        },
+                        {
+                            "name": "aaH",
+                            "match": "[\\s\\t]+HIS"
+                        },
+                        {
+                            "name": "aaI",
+                            "match": "[\\s\\t]+ILE"
+                        },
+                        {
+                            "name": "aaL",
+                            "match": "[\\s\\t]+LEU"
+                        },
+                        {
+                            "name": "aaK",
+                            "match": "[\\s\\t]+LYS"
+                        },
+                        {
+                            "name": "aaM",
+                            "match": "[\\s\\t]+MET"
+                        },
+                        {
+                            "name": "aaF",
+                            "match": "[\\s\\t]+PHE"
+                        },
+                        {
+                            "name": "aaP",
+                            "match": "[\\s\\t]+PRO"
+                        },
+                        {
+                            "name": "aaS",
+                            "match": "[\\s\\t]+SER"
+                        },
+                        {
+                            "name": "aaT",
+                            "match": "[\\s\\t]+THR"
+                        },
+                        {
+                            "name": "aaW",
+                            "match": "[\\s\\t]+TRP"
+                        },
+                        {
+                            "name": "aaY",
+                            "match": "[\\s\\t]+TYR"
+                        },
+                        {
+                            "name": "aaV",
+                            "match": "[\\s\\t]+VAL"
+                        }
+                    ]
+                },
+                {
+                    "name":"protein.sheet",
+                    "begin":"^SHEET",
+                    "end":"$",
+                    "patterns":[
+                        {
+                            "name":"character.type",
+                            "match":"(?<=([A-Z]+[\\s]+))[A-Z](?=([\\s]+[0-9]+))"
+                        },
+                        {
+                            "name": "aaA",
+                            "match": "[\\s\\t]+ALA"
+                        },
+                        {
+                            "name": "aaR",
+                            "match": "[\\s\\t]+ARG"
+                        },
+                        {
+                            "name": "aaN",
+                            "match": "[\\s\\t]+ASN"
+                        },
+                        {
+                            "name": "aaD",
+                            "match": "[\\s\\t]+ASP"
+                        },
+                        {
+                            "name": "aaC",
+                            "match": "[\\s\\t]+CYS"
+                        },
+                        {
+                            "name": "aaQ",
+                            "match": "[\\s\\t]+GLN"
+                        },
+                        {
+                            "name": "aaE",
+                            "match": "[\\s\\t]+GLU"
+                        },
+                        {
+                            "name": "aaG",
+                            "match": "[\\s\\t]+GLY"
+                        },
+                        {
+                            "name": "aaH",
+                            "match": "[\\s\\t]+HIS"
+                        },
+                        {
+                            "name": "aaI",
+                            "match": "[\\s\\t]+ILE"
+                        },
+                        {
+                            "name": "aaL",
+                            "match": "[\\s\\t]+LEU"
+                        },
+                        {
+                            "name": "aaK",
+                            "match": "[\\s\\t]+LYS"
+                        },
+                        {
+                            "name": "aaM",
+                            "match": "[\\s\\t]+MET"
+                        },
+                        {
+                            "name": "aaF",
+                            "match": "[\\s\\t]+PHE"
+                        },
+                        {
+                            "name": "aaP",
+                            "match": "[\\s\\t]+PRO"
+                        },
+                        {
+                            "name": "aaS",
+                            "match": "[\\s\\t]+SER"
+                        },
+                        {
+                            "name": "aaT",
+                            "match": "[\\s\\t]+THR"
+                        },
+                        {
+                            "name": "aaW",
+                            "match": "[\\s\\t]+TRP"
+                        },
+                        {
+                            "name": "aaY",
+                            "match": "[\\s\\t]+TYR"
+                        },
+                        {
+                            "name": "aaV",
+                            "match": "[\\s\\t]+VAL"
+                        }
+                    ]
+                },
+                {
+                    "begin":"^(HET|HETNAM)",
+                    "end":"$",
+                    "name":"character.ligand"
+                },
+                {
+                    "name":"protein.turn",
+                    "begin":"^TURN",
+                    "end":"$",
+                    "patterns":[
+                        {
+                            "name":"character.type",
+                            "match":"(?<=([A-Z]+[\\s]+))[A-Z](?=([\\s]+[0-9]+))"
+                        },
+                        {
+                            "name": "aaA",
+                            "match": "[\\s\\t]+ALA"
+                        },
+                        {
+                            "name": "aaR",
+                            "match": "[\\s\\t]+ARG"
+                        },
+                        {
+                            "name": "aaN",
+                            "match": "[\\s\\t]+ASN"
+                        },
+                        {
+                            "name": "aaD",
+                            "match": "[\\s\\t]+ASP"
+                        },
+                        {
+                            "name": "aaC",
+                            "match": "[\\s\\t]+CYS"
+                        },
+                        {
+                            "name": "aaQ",
+                            "match": "[\\s\\t]+GLN"
+                        },
+                        {
+                            "name": "aaE",
+                            "match": "[\\s\\t]+GLU"
+                        },
+                        {
+                            "name": "aaG",
+                            "match": "[\\s\\t]+GLY"
+                        },
+                        {
+                            "name": "aaH",
+                            "match": "[\\s\\t]+HIS"
+                        },
+                        {
+                            "name": "aaI",
+                            "match": "[\\s\\t]+ILE"
+                        },
+                        {
+                            "name": "aaL",
+                            "match": "[\\s\\t]+LEU"
+                        },
+                        {
+                            "name": "aaK",
+                            "match": "[\\s\\t]+LYS"
+                        },
+                        {
+                            "name": "aaM",
+                            "match": "[\\s\\t]+MET"
+                        },
+                        {
+                            "name": "aaF",
+                            "match": "[\\s\\t]+PHE"
+                        },
+                        {
+                            "name": "aaP",
+                            "match": "[\\s\\t]+PRO"
+                        },
+                        {
+                            "name": "aaS",
+                            "match": "[\\s\\t]+SER"
+                        },
+                        {
+                            "name": "aaT",
+                            "match": "[\\s\\t]+THR"
+                        },
+                        {
+                            "name": "aaW",
+                            "match": "[\\s\\t]+TRP"
+                        },
+                        {
+                            "name": "aaY",
+                            "match": "[\\s\\t]+TYR"
+                        },
+                        {
+                            "name": "aaV",
+                            "match": "[\\s\\t]+VAL"
+                        }
+                    ]
+                },
+                {
+                    "name":"aaL",
+                    "begin":"^EXPDTA",
+                    "end":"$"
+                },
+                {
+                    "name":"character.atom",
+                    "match":"^AUTHOR.*?$"
+                },
+                {
+                    "begin": "^SSBOND",
+                    "end": "$",
+                    "name": "ssbond",
+                    "patterns": [
+                        {
+                            "name":"constant.character.lightblue",
+                            "match":"[\\s]+[0-9\\.]+"
+                        },
+                        {
+                            "name":"aaC",
+                            "match":"[\\s]+CYS"
+                        },
+                        {
+                            "name":"character.type",
+                            "match":"(?<=(CYS[\\s]+))[a-zA-Z][\\s]+(?=([0-9]+))"
+                        }
+                    ]
+                },
+                {
+                    "begin":"^LINK",
+                    "end":"$",
+                    "name":"character.title"
+                },
+                {
+                    "begin":"^SITE",
+                    "end":"$",
+                    "name":"protein.site"
+                },
+                {
+                    "begin":"^(CRYST|ORIGX|SCALE)",
+                    "end":"$",
+                    "name":"protein.position"
                 }
             ]
         }

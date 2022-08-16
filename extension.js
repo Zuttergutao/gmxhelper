@@ -1,6 +1,7 @@
 // The module 'vscode' contains the VS Code extensibility API
 // Import the module and reference it with the alias vscode in your code below
 const vscode = require('vscode');
+const hover = require("./hover.js");
 
 // this method is called when your extension is activated
 // your extension is activated the very first time the command is executed
@@ -13,9 +14,11 @@ let beforeTheme = vscode.workspace.getConfiguration().get("GmxLang.nonBioTheme")
 function activate(context) {
     // Use the console to output diagnostic information (console.log) and errors (console.error)
     // This line of code will only be executed once when your extension is activated
-    console.log('Congratulations, your extension "gmxlang" is now active!');
+    // console.log('Congratulations, your extension "gmxlang" is now active!');
     let autoTheme = vscode.workspace.getConfiguration().get("GmxLang.autoSwitchTheme");
     let activeEditor = vscode.window.activeTextEditor;
+    // hover激活
+    context.subscriptions.push(hover);
     if (activeEditor) {
         updateDecorations();
     }
@@ -37,8 +40,8 @@ function activate(context) {
         }
         let lang = activeEditor.document.languageId;
         if (autoTheme) {
-            if (lang === "top" || lang === "pdb" || lang === "gro" ||
-                lang === "itp" || lang === "mdp" || lang === "ndx" || lang === "xvg") {
+            if (lang === "top" || lang === "pdb" || lang === "gro" || lang === "fasta" ||
+                lang === "itp" || lang === "mdp" || lang === "ndx" || lang === "xvg" || lang === "mol2") {
                 // update theme
                 vscode.workspace.getConfiguration().update("workbench.colorTheme", "gmxLang", true);
             } else {
@@ -46,11 +49,13 @@ function activate(context) {
             }
         }
     }
+
+
     vscode.languages.registerDocumentFormattingEditProvider('mdp', {
         provideDocumentFormattingEdits: function(document) {
             var text = document.getText().split(/[\n\r]+/g);
             var result = [];
-            var section = []
+            var section = [];
             for (let i in text) {
                 if (text[i].search(/=/g) !== -1) {
                     section = text[i].split(/=/g)
@@ -70,23 +75,27 @@ function activate(context) {
             var text = document.getText().split(/[\n\r]+/g);
             var result = [];
             var section = [];
+            var idx;
             for (var i in text) {
                 if ((text[i].search(/^[\s]*[0-9]+[\s]*[a-zA-Z]+/g)) !== -1) {
                     section = text[i].split(/[\s]+/g)
                     for (var j in section) {
                         if (section[j] === "") {
                             section.shift()
-                            if (section.length === 7 || section.length === 10) {
-                                section[1] = section[0].concat(section[1])
-                                section[0] = ""
-                                section.shift()
+                            if (section.length === 6 || section.length === 9) {
+                                idx = section[0].search(/[a-zA-Z]+/g)
+                                for (var m = section.length; m >= 2; m--) {
+                                    section[m] = section[m - 1];
+                                }
+                                section[1] = section[0].slice(idx, )
+                                section[0] = section[0].slice(0, idx)
                             }
                         }
                     }
-                    if (section.length === 6) {
-                        result[i] = section[0].padStart(10, " ").concat(section[1].padStart(5, " ")).concat(section[2].padStart(5, " ")).concat(parseFloat(section[3]).toFixed(3).padStart(8, " ")).concat(parseFloat(section[4]).toFixed(3).padStart(8, " ")).concat(parseFloat(section[5]).toFixed(3).padStart(8, " "))
-                    } else if (section.length === 9) {
-                        result[i] = section[0].padStart(10, " ").concat(section[1].padStart(5, " ")).concat(section[2].padStart(5, " ")).concat(parseFloat(section[3]).toFixed(3).padStart(8, " ")).concat(parseFloat(section[4]).toFixed(3).padStart(8, " ")).concat(parseFloat(section[5]).toFixed(3).padStart(8, " ")).concat(parseFloat(section[6]).toFixed(4).padStart(8, " ")).concat(parseFloat(section[7]).toFixed(4).padStart(8, " ")).concat(parseFloat(section[8]).toFixed(4).padStart(8, " "))
+                    if (section.length === 7) {
+                        result[i] = section[0].padStart(5, " ").concat(section[1].padEnd(5, " ")).concat(section[2].padStart(5, " ")).concat(section[3].padStart(5, " ")).concat(parseFloat(section[4]).toFixed(3).padStart(8, " ")).concat(parseFloat(section[5]).toFixed(3).padStart(8, " ")).concat(parseFloat(section[6]).toFixed(3).padStart(8, " "))
+                    } else if (section.length === 10) {
+                        result[i] = section[0].padStart(5, " ").concat(section[1].padEnd(5, " ")).concat(section[2].padStart(5, " ")).concat(section[3].padStart(5, " ")).concat(parseFloat(section[4]).toFixed(3).padStart(8, " ")).concat(parseFloat(section[5]).toFixed(3).padStart(8, " ")).concat(parseFloat(section[6]).toFixed(3).padStart(8, " ")).concat(parseFloat(section[7]).toFixed(4).padStart(8, " ")).concat(parseFloat(section[8]).toFixed(4).padStart(8, " ")).concat(parseFloat(section[9]).toFixed(4).padStart(8, " "))
                     } else {
                         break
                     }
@@ -122,7 +131,7 @@ function activate(context) {
                     return undefined;
                 }
                 return [
-                    new vscode.CompletionItem('-DFEXIBLE', vscode.CompletionItemKind.Value),
+                    new vscode.CompletionItem('-DFLEXIBLE', vscode.CompletionItemKind.Value),
                     new vscode.CompletionItem('-DPOSRES', vscode.CompletionItemKind.Value),
                 ];
             }
@@ -1118,6 +1127,305 @@ function activate(context) {
     );
     context.subscriptions.push(densityguidedsim);
 }
+
+function activate(context) {
+    context.subscriptions.push(
+        vscode.commands.registerCommand('showProteinStructure', () => {
+            // Create and show panel
+            const panel = vscode.window.createWebviewPanel(
+                'showProteinStructure',
+                'Protein',
+                vscode.ViewColumn.One, {
+                    enableScripts: true, // 允许 JavaScript
+                    retainContextWhenHidden: true // 在 hidden 的时候保持不关闭
+                }
+            );
+            //const pdbdata = document.getText();
+            // And set its HTML content
+            panel.webview.html = getWebviewContent();
+        })
+    );
+}
+
+function getWebviewContent() {
+    return `<!DOCTYPE html>
+    <html lang="en">
+    
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <!--these two are required by the ChemDoodle Web Components library-->
+        <link rel="stylesheet" href="https://gitee.com/navierstokes20/navierstokes20/blob/master/ChemDoole/ChemDoodleWeb.css" type="text/css">
+        <script type="text/javascript" src="https://gitee.com/navierstokes20/navierstokes20/blob/master/ChemDoole/ChemDoodleWeb.js"></script>
+        <!--these two are required by the SketcherCanvas plugin-->
+        <link rel="stylesheet" href="https://gitee.com/navierstokes20/navierstokes20/blob/master/ChemDoole/jquery-ui-1.11.4.custom.css" type="text/css">
+        <script type="text/javascript" src="https://gitee.com/navierstokes20/navierstokes20/blob/master/ChemDoole/ChemDoodleWeb-uis.js"></script>
+        <script src="https://gitee.com/navierstokes20/navierstokes20/blob/master/ChemDoole/ChemDoodleWeb.js"></script>
+        <title>ChemDoodle Web</title>
+    
+        <style>
+            h1 {
+                text-align: center;
+            }
+            
+            a {
+                display: block;
+                height: 20px;
+                padding: 0 10px;
+                line-height: 20px;
+                text-decoration: none;
+                font-size: 20px;
+                color: black;
+                text-align: center;
+            }
+            
+            hr {
+                border: 2px solid rgba(127, 208, 255, 0.479);
+            }
+            
+            .links ul {
+                text-align: center;
+                display: table;
+                margin: 25px auto;
+            }
+        </style>
+    </head>
+    
+    <body>
+        <!--上传文件并显示蛋白-->
+        <h1 id="ProStructure">查看蛋白结构</h1>
+        <div style="width: 1000px;height: 700px; background-color: hsl(0, 0%, 100%);margin:0px auto ;">
+            <ul style="list-style:none" align="center">
+                <li>
+                    <input type="file" name="file" value="上传文件" onchange="ProPreview(this)" /> <i><strong>**输入文件为.pdb格式</strong></i>
+                    <form action=" " style="padding: 0px 5px 5px 5px;">
+                        Display:
+                        <input type="checkbox" name="water" value="showWater" onclick="showwater()">show water
+                        <input type="checkbox" name="label" value="showlabel" onclick="showlabel()">show label
+                        <input type="checkbox" name="backbone" value="Bike" onclick="showbackbone()">show backbone
+                    </form>
+                    <script type="text/javascript ">
+                        var ribbonTransformer = new ChemDoodle.TransformCanvas3D('ribbonTransformer', 800, 600);
+                        ribbonTransformer.styles.set3DRepresentation('Stick');
+                        ribbonTransformer.styles.proteins_displayRibbon = true;
+                        ribbonTransformer.styles.proteins_ribbonCartoonize = true;
+                        ribbonTransformer.styles.backgroundColor = '#000000';
+                        ribbonTransformer.styles.proteins_tubeResolution_3D = 30;
+                        ribbonTransformer.styles.proteins_ribbonThickness = 0.2;
+                        ribbonTransformer.styles.proteins_tubeThickness = 0.2;
+                        ribbonTransformer.styles.proteins_plankSheetWidth = 3.5;
+                        ribbonTransformer.styles.proteins_cylinderHelixDiameter = 2;
+                        ribbonTransformer.styles.macro_showWater = false;
+                        ribbonTransformer.styles.proteins_backboneThickness = 1.0;
+                        var arr_1 = new Array();
+                        var temp_str_1 = "0 ";
+                        var i_1 = 0;
+    
+                        function ProPreview(source) {
+                            var input = source;
+                            var reader = new FileReader();
+                            reader.readAsText(input.files[0]);
+                            reader.onload = function() {
+                                if (reader.result) {
+                                    //显示文件内容 
+                                    temp_str_1 = reader.result;
+                                    let mol_1 = ChemDoodle.readPDB(temp_str_1); //从分子文件创建mol对象
+                                    ribbonTransformer.loadMolecule(mol_1); //导入mol对象 
+                                }
+                            };
+                        }
+    
+                        function showwater() {
+                            if (ribbonTransformer.styles.macro_showWater == true) {
+                                ribbonTransformer.styles.macro_showWater = false
+                            } else {
+                                ribbonTransformer.styles.macro_showWater = true
+                            }
+                            ribbonTransformer.setupScene();
+                            ribbonTransformer.repaint();
+                        }
+    
+                        function showlabel() {
+                            if (ribbonTransformer.styles.atoms_displayLabels_3D == true) {
+                                ribbonTransformer.styles.atoms_displayLabels_3D = false
+                            } else {
+                                ribbonTransformer.styles.atoms_displayLabels_3D = true
+                            }
+                            ribbonTransformer.setupScene();
+                            ribbonTransformer.repaint();
+                        }
+    
+                        function showbackbone() {
+                            if (ribbonTransformer.styles.proteins_displayBackbone == true) {
+                                ribbonTransformer.styles.proteins_displayBackbone = false
+                            } else {
+                                ribbonTransformer.styles.proteins_displayBackbone = true
+                            }
+                            ribbonTransformer.setupScene();
+                            ribbonTransformer.repaint();
+                        }
+                    </script>
+                </li>
+            </ul>
+            <a style="margin-top: 0px;padding-top:0px;float:right; font-size: 15px;color: rgb(94, 55, 165);" href="#links">返回主页</a>
+        </div>
+        <hr>
+    
+    
+    </body>
+    
+    </html>`;
+}
+
+
+function activate(context) {
+    context.subscriptions.push(vscode.languages.registerFoldingRangeProvider("fasta", {
+        provideFoldingRanges(document, context, token) {
+            const text = document.getText().split(/[\n\r]+/g);
+            // console.log(text[0])
+            const RegExp = />.*/g;
+            let match = [];
+            let FoldingRange = [];
+            for (let i in text) {
+                while (RegExp.exec(text[i])) {
+                    match.push(Number(i))
+                }
+            };
+            match.push(text.length - 1)
+            for (let m in match) {
+                m = Number(m)
+                if (m < match.length - 2) {
+                    FoldingRange.push(new vscode.FoldingRange(match[m], match[m + 1] - 1, vscode.FoldingRangeKind.Comment))
+                } else {
+                    FoldingRange.push(new vscode.FoldingRange(match[m], match[m + 1], vscode.FoldingRangeKind.Comment))
+                }
+            }
+            return FoldingRange;
+        }
+    }));
+    context.subscriptions.push(vscode.languages.registerFoldingRangeProvider("itp", {
+        provideFoldingRanges(document, context, token) {
+            const text = document.getText().split(/[\n\r]+/g);
+            const RegExp = /\s*\[.*\]/g;
+            const LL = (document.getText().match(/\r\n?|\n/g) || []).length
+            for (let L = 0; L < LL; L++) {
+                if (text[L] != document.lineAt(L).text) {
+                    text.splice(L, 0, "\n")
+                }
+            }
+            let match = [];
+            let FoldingRange = [];
+
+            for (let i in text) {
+                while (RegExp.exec(text[i])) {
+                    match.push(Number(i))
+                }
+            };
+            match.push(text.length - 1)
+            for (let m in match) {
+                m = Number(m)
+                if (m < match.length - 2) {
+                    FoldingRange.push(new vscode.FoldingRange(match[m], match[m + 1] - 1, vscode.FoldingRangeKind.Comment))
+                } else {
+                    FoldingRange.push(new vscode.FoldingRange(match[m], match[m + 1], vscode.FoldingRangeKind.Comment))
+                }
+            }
+            return FoldingRange;
+        }
+    }));
+    context.subscriptions.push(vscode.languages.registerFoldingRangeProvider("top", {
+        provideFoldingRanges(document, context, token) {
+            const text = document.getText().split(/[\n\r]+/g);
+            const RegExp = /\s*\[.*\]/g;
+            const LL = (document.getText().match(/\r\n?|\n/g) || []).length
+            for (let L = 0; L < LL; L++) {
+                if (text[L] != document.lineAt(L).text) {
+                    text.splice(L, 0, "\n")
+                }
+            }
+            let match = [];
+            let FoldingRange = [];
+
+            for (let i in text) {
+                while (RegExp.exec(text[i])) {
+                    match.push(Number(i))
+                }
+            };
+            match.push(text.length - 1)
+            for (let m in match) {
+                m = Number(m)
+                if (m < match.length - 2) {
+                    FoldingRange.push(new vscode.FoldingRange(match[m], match[m + 1] - 1, vscode.FoldingRangeKind.Comment))
+                } else {
+                    FoldingRange.push(new vscode.FoldingRange(match[m], match[m + 1], vscode.FoldingRangeKind.Comment))
+                }
+            }
+            return FoldingRange;
+        }
+    }));
+    context.subscriptions.push(vscode.languages.registerFoldingRangeProvider("ndx", {
+        provideFoldingRanges(document, context, token) {
+            const text = document.getText().split(/[\n\r]+/g);
+            const RegExp = /\s*\[.*\]/g;
+            const LL = (document.getText().match(/\r\n?|\n/g) || []).length
+            for (let L = 0; L < LL; L++) {
+                if (text[L] != document.lineAt(L).text) {
+                    text.splice(L, 0, "\n")
+                }
+            }
+            let match = [];
+            let FoldingRange = [];
+
+            for (let i in text) {
+                while (RegExp.exec(text[i])) {
+                    match.push(Number(i))
+                }
+            };
+            match.push(text.length - 1)
+            for (let m in match) {
+                m = Number(m)
+                if (m < match.length - 2) {
+                    FoldingRange.push(new vscode.FoldingRange(match[m], match[m + 1] - 1, vscode.FoldingRangeKind.Comment))
+                } else {
+                    FoldingRange.push(new vscode.FoldingRange(match[m], match[m + 1], vscode.FoldingRangeKind.Comment))
+                }
+            }
+            return FoldingRange;
+        }
+    }))
+    context.subscriptions.push(vscode.languages.registerFoldingRangeProvider("mol2", {
+        provideFoldingRanges(document, context, token) {
+            const text = document.getText().split(/[\n\r]+/g);
+            const RegExp = /@<TRIPOS>.*/g;
+            const LL = (document.getText().match(/\r\n?|\n/g) || []).length
+            for (let L = 0; L < LL; L++) {
+                if (text[L] != document.lineAt(L).text) {
+                    text.splice(L, 0, "\n")
+                }
+            }
+            let match = [];
+            let FoldingRange = [];
+
+            for (let i in text) {
+                while (RegExp.exec(text[i])) {
+                    match.push(Number(i))
+                }
+            };
+            match.push(text.length - 1)
+            for (let m in match) {
+                m = Number(m)
+                if (m < match.length - 2) {
+                    FoldingRange.push(new vscode.FoldingRange(match[m], match[m + 1] - 1, vscode.FoldingRangeKind.Comment))
+                } else {
+                    FoldingRange.push(new vscode.FoldingRange(match[m], match[m + 1], vscode.FoldingRangeKind.Comment))
+                }
+            }
+            return FoldingRange;
+        }
+    }))
+}
+
 
 // this method is called when your extension is deactivated
 function deactivate() {}

@@ -45,7 +45,7 @@
 								},
 								{
 									"name": "constant.character.lightblue.mdp",
-									"match": "(?<=([\\s\\t]*(\\=)[\\s\\t]*))[(\\-)(\\.)0-9a-zA-Z([\\s\\t]*)]+"
+									"match": "(?<=([\\s\\t]*(\\=)[\\s\\t]*))[(\\-)(\\.)\\_0-9a-zA-Z([\\s\\t]*)]+"
 								},
 								{
 									"name": "constant.character.lightblue.mdp",

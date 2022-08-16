@@ -16,7 +16,14 @@
                 },
                 {
                     "name": "variable.parameter",
-                    "match": "(#ifdef(.*)|#endif|#define(.*)|#include(.*)|#ifndef(.*)|(#else))"
+                    "begin": "^(#ifdef|#endif|#define|#include|#ifndef|#else)",
+                    "end": "$",
+                    "patterns": [
+                        {
+                            "name": "comment.green.itp",
+                            "match": "(;.*$)"
+                        }
+                    ]
                 },
                 {
                     "name": "support.function",
@@ -28,10 +35,10 @@
                 },
                 {
                     "name":"character.italic",
-                    "match":"[a-zA-Z0-9\\+\\-\\_]+[\\s\\t]+((?=[0-9]+$)|(?=$))"
+                    "match":"^[a-zA-Z\\+\\-\\_\\s\\,]+((?=[\\s0-9]+$)|(?=$))"
                 },
                 {
-                    "begin": "^(([\\s]+[a-zA-Z]+)|([a-zA-Z]+))",
+                    "begin": "^(([\\s]+[\\+\\-a-zA-Z]+)|([\\+\\-a-zA-Z]+))",
                     "end": "$",
                     "name": "character.type",
                     "patterns": [

@@ -3,8 +3,8 @@
 	"displayName": "gmxhelper",
 	"publisher": "Casea1998",
 	"description": "For gromacs language support ",
-	"version": "1.0.5",
-    "repository": {
+	"version": "1.0.10",
+	"repository": {
 		"type": "git",
 		"url": "https://github.com/Zuttergutao/gmxhelper"
 	},
@@ -16,18 +16,32 @@
 		"Programming Languages"
 	],
 	"activationEvents": [
-		"onLanguage:mdp",
-        "onLanguage:pdb",
-        "onLanguage:gro",
-        "onLanguage:itp",
-        "onLanguage:top",
-        "onLanguage:ndx",
-        "onLanguage:xvg"
+		"*"
 	],
-
 	"main": "./extension.js",
 	"contributes": {
-        "configuration": {
+		"commands": [
+			{
+				"command": "showProteinStructure",
+				"title": "show selected protein structure",
+				"category": "showProteinStructure"
+			}
+		],
+		"keybindings": [
+			{
+				"command": "iferrblocks.fold",
+				"key": "alt+ctrl+[Period]",
+				"mac": "alt+cmd+[Period]",
+				"when": "editorTextFocus"
+			},
+			{
+				"command": "iferrblocks.unfold",
+				"key": "shift+ctrl+cmd+[Period]",
+				"mac": "shift+alt+cmd+[Period]",
+				"when": "editorTextFocus"
+			}
+		],
+		"configuration": {
 			"type": "object",
 			"title": "GmxLang",
 			"properties": {
@@ -45,141 +59,185 @@
 				}
 			}
 		},
-		"commands": [
+		"languages": [
 			{
-				"command": "gmxlang.helloWorld",
-				"title": "Thank you for using this add-on"
+				"id": "mdp",
+				"aliases": [
+					"mdp"
+				],
+				"extensions": [
+					".mdp"
+				],
+				"configuration": "./syntaxes/language-configuration.json"
+			},
+			{
+				"id": "pdb",
+				"aliases": [
+					"pdb"
+				],
+				"extensions": [
+					".pdb"
+				],
+				"configuration": "./syntaxes/language-configuration.json"
+			},
+			{
+				"id": "top",
+				"aliases": [
+					"top"
+				],
+				"extensions": [
+					".top"
+				],
+				"configuration": "./syntaxes/language-configuration.json"
+			},
+			{
+				"id": "gro",
+				"aliases": [
+					"gro"
+				],
+				"extensions": [
+					".gro"
+				],
+				"configuration": "./syntaxes/language-configuration.json"
+			},
+			{
+				"id": "itp",
+				"aliases": [
+					"itp"
+				],
+				"extensions": [
+					".itp"
+				],
+				"configuration": "./syntaxes/language-configuration.json"
+			},
+			{
+				"id": "ndx",
+				"aliases": [
+					"ndx"
+				],
+				"extensions": [
+					".ndx"
+				],
+				"configuration": "./syntaxes/language-configuration.json"
+			},
+			{
+				"id": "fasta",
+				"aliases": [
+					"fasta"
+				],
+				"extensions": [
+					".fasta"
+				],
+				"configuration": "./syntaxes/language-configuration.json"
+			},
+			{
+				"id": "xvg",
+				"aliases": [
+					"xvg"
+				],
+				"extensions": [
+					".xvg"
+				],
+				"configuration": "./syntaxes/language-configuration.json"
+			},
+			{
+				"id": "hover",
+				"aliases": [
+					"hover"
+				],
+				"extensions": [
+					".hover"
+				],
+				"configuration": "./syntaxes/language-configuration.json"
+			},
+			{
+				"id": "mol2",
+				"aliases": [
+					"mol2"
+				],
+				"extensions": [
+					".mol2"
+				],
+				"configuration": "./syntaxes/language-configuration.json"
 			}
 		],
-		"languages": [
-            {
-                "id": "mdp",
-                "aliases": [
-                    "mdp"
-                ],
-                "extensions": [
-                    ".mdp"
-                ],
-                "configuration": "./syntaxes/language-configuration.json"
-            },
+		"grammars": [
 			{
-                "id": "pdb",
-                "aliases": [
-                    "pdb"
-                ],
-                "extensions": [
-					".pdb"
-                ],
-                "configuration": "./syntaxes/language-configuration.json"
-            },
+				"language": "mdp",
+				"scopeName": "source.mdp",
+				"path": "./syntaxes/mdp.tmLanguage.json"
+			},
 			{
-                "id": "top",
-                "aliases": [
-                    "top"
-                ],
-                "extensions": [
-                    ".top"
-                ],
-                "configuration": "./syntaxes/language-configuration.json"
-            },
-            {
-                "id": "gro",
-                "aliases": [
-                    "gro"
-                ],
-                "extensions": [
-                    ".gro"
-                ],
-                "configuration": "./syntaxes/language-configuration.json"
-            },
-            {
-                "id": "itp",
-                "aliases": [
-                    "itp"
-                ],
-                "extensions": [
-                    ".itp"
-                ],
-                "configuration": "./syntaxes/language-configuration.json"
-            },
-            {
-                "id": "ndx",
-                "aliases": [
-                    "ndx"
-                ],
-                "extensions": [
-                    ".ndx"
-                ],
-                "configuration": "./syntaxes/language-configuration.json"
-            },
-            {
-                "id": "xvg",
-                "aliases": [
-                    "xvg"
-                ],
-                "extensions": [
-                    ".xvg"
-                ],
-                "configuration": "./syntaxes/language-configuration.json"
-            }
-        ],
-        "grammars": [
-            {
-                "language": "mdp",
-                "scopeName": "source.mdp",
-                "path": "./syntaxes/mdp.tmLanguage.json"
-            },
+				"language": "pdb",
+				"scopeName": "source.pdb",
+				"path": "./syntaxes/pdb.tmLanguage.json"
+			},
 			{
-                "language": "pdb",
-                "scopeName": "source.pdb",
-                "path": "./syntaxes/pdb.tmLanguage.json"
-            },
+				"language": "top",
+				"scopeName": "source.top",
+				"path": "./syntaxes/top.tmLanguage.json"
+			},
 			{
-                "language": "top",
-                "scopeName": "source.top",
-                "path": "./syntaxes/top.tmLanguage.json"
-            },
-            {
-                "language": "gro",
-                "scopeName": "source.gro",
-                "path": "./syntaxes/gro.tmLanguage.json"
-            },
-            {
-                "language": "itp",
-                "scopeName": "source.itp",
-                "path": "./syntaxes/itp.tmLanguage.json"
-            },
-            {
-                "language": "xvg",
-                "scopeName": "source.xvg",
-                "path": "./syntaxes/xvg.tmLanguage.json"
-            },
-            {
-                "language": "ndx",
-                "scopeName": "source.ndx",
-                "path": "./syntaxes/ndx.tmLanguage.json"
-            }
-        ],
+				"language": "gro",
+				"scopeName": "source.gro",
+				"path": "./syntaxes/gro.tmLanguage.json"
+			},
+			{
+				"language": "itp",
+				"scopeName": "source.itp",
+				"path": "./syntaxes/itp.tmLanguage.json"
+			},
+			{
+				"language": "xvg",
+				"scopeName": "source.xvg",
+				"path": "./syntaxes/xvg.tmLanguage.json"
+			},
+			{
+				"language": "fasta",
+				"scopeName": "source.fasta",
+				"path": "./syntaxes/fasta.tmLanguage.json"
+			},
+			{
+				"language": "hover",
+				"scopeName": "source.hover",
+				"path": "./syntaxes/hover.tmLanguage.json"
+			},
+			{
+				"language": "ndx",
+				"scopeName": "source.ndx",
+				"path": "./syntaxes/ndx.tmLanguage.json"
+			},
+			{
+				"language": "mol2",
+				"scopeName": "source.mol2",
+				"path": "./syntaxes/mol2.tmLanguage.json"
+			}
+		],
 		"themes": [
 			{
-                "label": "gmxLang",
-                "id": "gmxLang",
+				"label": "gmxLang",
+				"id": "gmxLang",
 				"uiTheme": "vs-dark",
 				"path": "./syntaxes/themecolor.json"
 			}
 		],
-        "snippets": [
-            {
-                "language": "mdp",
-                "path": "./snippets.json"
-            }
-        ]
-
+		"snippets": [
+			{
+				"language": "mdp",
+				"path": "./snippets.json"
+			}
+		]
 	},
-
 	"scripts": {
 		"lint": "eslint .",
 		"pretest": "npm run lint",
 		"test": "node ./test/runTest.js"
+	},
+	"__metadata": {
+		"id": "caff09e2-b306-4ad3-95a4-32ee2446027d",
+		"publisherId": "574ff37d-46e6-43af-ad1a-a37ed7975abf",
+		"publisherDisplayName": "Casea1998",
+		"isPreReleaseVersion": false,
+		"installedTimestamp": 1645249238091
 	}
 }

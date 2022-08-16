@@ -7,24 +7,45 @@
     },
     // symbols used as brackets
     "brackets": [
-        ["{", "}"],
-        ["[", "]"],
-        ["(", ")"]
+        [
+            "[",
+            "]"
+        ],
     ],
     // symbols that are auto closed when typing
     "autoClosingPairs": [
-        ["{", "}"],
-        ["[", "]"],
-        ["(", ")"],
-        ["\"", "\""],
-        ["'", "'"]
+        [
+            "[",
+            "]"
+        ],
+        [
+            "\"",
+            "\""
+        ],
+        [
+            "'",
+            "'"
+        ]
     ],
     // symbols that can be used to surround a selection
     "surroundingPairs": [
-        ["{", "}"],
-        ["[", "]"],
-        ["(", ")"],
-        ["\"", "\""],
-        ["'", "'"]
+        [
+            "[",
+            "]"
+        ],
+        [
+            "\"",
+            "\""
+        ],
+        [
+            "'",
+            "'"
+        ]
     ],
+    "folding": {
+        "markers": {
+            "start": "^>\\s*[a-zA-Z_\\S]*",
+            "end": "^>\\s*[a-zA-Z_\\S]*"
+        }
+    }
 }

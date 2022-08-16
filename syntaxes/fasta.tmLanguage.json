@@ -1,0 +1,111 @@
+{
+    "patterns": [
+        {
+            "include": "#structure"
+        }
+    ],
+    "$schema": "https://raw.githubusercontent.com/martinring/tmlanguage/master/tmlanguage.json",
+    "scopeName": "source.fasta",
+    "name": "fasta",
+    "repository": {
+        "structure": {
+            "patterns": [
+                {
+                   "begin":"^([\\s]*>)",
+                   "end":"$",
+                   "name":"comment.green"
+
+                },
+                {
+                    "begin": "^(?<![>])",
+                    "end": "$",
+                    "name": "constant.character.lightblue",
+                    "patterns": [
+                        {
+                            "name": "aaA",
+                            "match": "A"
+                        },
+                        {
+                            "name": "aaR",
+                            "match": "R"
+                        },
+                        {
+                            "name": "aaN",
+                            "match": "N"
+                        },
+                        {
+                            "name": "aaD",
+                            "match": "D"
+                        },
+                        {
+                            "name": "aaC",
+                            "match": "C"
+                        },
+                        {
+                            "name": "aaQ",
+                            "match": "Q"
+                        },
+                        {
+                            "name": "aaE",
+                            "match": "E"
+                        },
+                        {
+                            "name": "aaG",
+                            "match": "G"
+                        },
+                        {
+                            "name": "aaH",
+                            "match": "H"
+                        },
+                        {
+                            "name": "aaI",
+                            "match": "I"
+                        },
+                        {
+                            "name": "aaL",
+                            "match": "L"
+                        },
+                        {
+                            "name": "aaK",
+                            "match": "K"
+                        },
+                        {
+                            "name": "aaM",
+                            "match": "M"
+                        },
+                        {
+                            "name": "aaF",
+                            "match": "F"
+                        },
+                        {
+                            "name": "aaP",
+                            "match": "P"
+                        },
+                        {
+                            "name": "aaS",
+                            "match": "S"
+                        },
+                        {
+                            "name": "aaT",
+                            "match": "T"
+                        },
+                        {
+                            "name": "aaW",
+                            "match": "W"
+                        },
+                        {
+                            "name": "aaY",
+                            "match": "Y"
+                        },
+                        {
+                            "name": "aaV",
+                            "match": "V"
+                        }
+                    ]
+                }
+                
+                       
+            ]
+        }
+    }
+}

@@ -5,7 +5,7 @@
             "scope":"string.quoted.orange",
             "settings":{
                 "fontStyle":"",
-                "foreground":"#cf9178",
+                "foreground":"#CA7553",
                 "background":"#000000"
             }
         },
@@ -14,7 +14,17 @@
             "scope":"constant.character.lightblue",
             "settings":{
                 "fontStyle":"",
-                "foreground":"#569cc8",
+                "foreground":"#3FAEF3DE",
+                "background":"#000000"
+            }
+        },
+        
+        {
+            "name":"character.darkyellow",
+            "scope":"character.darkyellow",
+            "settings":{
+                "fontStyle":"",
+                "foreground":"#CC8720",
                 "background":"#000000"
             }
         },
@@ -23,7 +33,43 @@
             "scope":"comment.green",
             "settings":{
                 "fontStyle":"",
-                "foreground":"#608e55",
+                "foreground":"#3C802D",
+                "background":"#000000"
+            }
+        },
+        {
+            "name":"comment.lightblue",
+            "scope":"comment.lightblue",
+            "settings":{
+                "fontStyle":"",
+                "foreground":"#7EC5C5",
+                "background":"#000000"
+            }
+        },
+        {
+            "name":"comment.pink",
+            "scope":"comment.pink",
+            "settings":{
+                "fontStyle":"",
+                "foreground":"#C57D9E",
+                "background":"#000000"
+            }
+        },
+        {
+            "name":"comment.grayblue",
+            "scope":"comment.grayblue",
+            "settings":{
+                "fontStyle":"",
+                "foreground":"#7A8FB7",
+                "background":"#000000"
+            }
+        },
+        {
+            "name":"comment.lightgreen",
+            "scope":"comment.lightgreen",
+            "settings":{
+                "fontStyle":"",
+                "foreground":"#25B815",
                 "background":"#000000"
             }
         },
@@ -31,8 +77,8 @@
             "name":"keyword.purple",
             "scope":"keyword.purple",
             "settings":{
-                "fontStyle":"",
-                "foreground":"#c586c0",
+                "fontStyle":"bold",
+                "foreground":"#D95EF1F8",
                 "background":"#000000"
             }
         },
@@ -50,7 +96,7 @@
             "scope":"variable.parameter",
             "settings":{
                 "fontStyle":"",
-                "foreground":"#A93CC4",
+                "foreground":"#A66BDD",
                 "background":"#000000"
             }
         },
@@ -59,7 +105,26 @@
             "scope":"support.function",
             "settings":{
                 "fontStyle":"",
-                "foreground":"#C7F709",
+                "foreground":"#C3F709",
+                "background":"#000000"
+            }
+        },
+
+        {
+            "name":"keyword.darkyellow",
+            "scope":"keyword.darkyellow",
+            "settings":{
+                "fontStyle":"",
+                "foreground":"#939317",
+                "background":"#000000"
+            }
+        },
+        {
+            "name":"character.paper",
+            "scope":"character.paper",
+            "settings":{
+                "fontStyle":"",
+                "foreground":"#00b8e5",
                 "background":"#000000"
             }
         },
@@ -68,7 +133,7 @@
             "scope":"character.italic",
             "settings":{
                 "fontStyle":"italic bold",
-                "foreground":"#DCB0F9",
+                "foreground":"#E37FF7",
                 "background":"#000000"
             }
         },
@@ -76,8 +141,8 @@
             "name":"character.type",
             "scope":"character.type",
             "settings":{
-                "fontStyle":"",
-                "foreground":"#00FFCC",
+                "fontStyle":"bold",
+                "foreground":"#AF3FAF",
                 "background":"#000000"
             }
         },
@@ -85,8 +150,8 @@
             "name":"character.atom",
             "scope":"character.atom",
             "settings":{
-                "fontStyle":"",
-                "foreground":"#00FFFF",
+                "fontStyle":"bold",
+                "foreground":"#03CE7D",
                 "background":"#000000"
             }
         },
@@ -95,7 +160,61 @@
             "scope":"character.ligand",
             "settings":{
                 "fontStyle":"",
-                "foreground":"#66EE9C",
+                "foreground":"#80F8B0E0",
+                "background":"#000000"
+            }
+        },
+        {
+            "name":"character.title",
+            "scope":"character.title",
+            "settings":{
+                "fontStyle":"",
+                "foreground":"#39A3E9",
+                "background":"#000000"
+            }
+        },
+        {
+            "name":"protein.helix",
+            "scope":"protein.helix",
+            "settings":{
+                "fontStyle":"",
+                "foreground":"#827AF0",
+                "background":"#000000"
+            }
+        },
+        {
+            "name":"protein.sheet",
+            "scope":"protein.sheet",
+            "settings":{
+                "fontStyle":"",
+                "foreground":"#5EF0BF",
+                "background":"#000000"
+            }
+        },
+        {
+            "name":"protein.turn",
+            "scope":"protein.turn",
+            "settings":{
+                "fontStyle":"",
+                "foreground":"#D8D5F8",
+                "background":"#000000"
+            }
+        },
+        {
+            "name":"protein.site",
+            "scope":"protein.site",
+            "settings":{
+                "fontStyle":"",
+                "foreground":"#195E79",
+                "background":"#000000"
+            }
+        },
+        {
+            "name":"protein.position",
+            "scope":"protein.position",
+            "settings":{
+                "fontStyle":"normal",
+                "foreground":"#87B860",
                 "background":"#000000"
             }
         },
@@ -104,7 +223,16 @@
             "scope":"water",
             "settings":{
                 "fontStyle":"",
-                "foreground":"#FF1141",
+                "foreground":"#FD0536",
+                "background":"#000000"
+            }
+        },
+        {
+            "name":"ssbond",
+            "scope":"ssbond",
+            "settings":{
+                "fontStyle":"",
+                "foreground":"#E68F0E",
                 "background":"#000000"
             }
         },
@@ -113,7 +241,7 @@
             "scope":"aaA",
             "settings":{
                 "fontStyle":"",
-                "foreground":"#FF0088",
+                "foreground":"#EB0E84",
                 "background":"#000000"
             }
         },
@@ -122,7 +250,7 @@
             "scope":"aaR",
             "settings":{
                 "fontStyle":"",
-                "foreground":"#FF0000",
+                "foreground":"#F71C1C",
                 "background":"#000000"
             }
         },
@@ -131,7 +259,7 @@
             "scope":"aaN",
             "settings":{
                 "fontStyle":"",
-                "foreground":"#FF5511",
+                "foreground":"#CF4A15",
                 "background":"#000000"
             }
         },
@@ -140,7 +268,7 @@
             "scope":"aaD",
             "settings":{
                 "fontStyle":"",
-                "foreground":"#FFAA33",
+                "foreground":"#EEA033",
                 "background":"#000000"
             }
         },
@@ -212,7 +340,7 @@
             "scope":"aaK",
             "settings":{
                 "fontStyle":"",
-                "foreground":"#00BBFF",
+                "foreground":"#136DE4",
                 "background":"#000000"
             }
         },
@@ -230,7 +358,7 @@
             "scope":"aaF",
             "settings":{
                 "fontStyle":"",
-                "foreground":"#0000FF",
+                "foreground":"#4040D8",
                 "background":"#000000"
             }
         },
