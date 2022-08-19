@@ -3,7 +3,7 @@
 	"displayName": "gmxhelper",
 	"publisher": "Casea1998",
 	"description": "For gromacs language support ",
-	"version": "1.0.11",
+	"version": "1.0.10",
 	"repository": {
 		"type": "git",
 		"url": "https://github.com/Zuttergutao/gmxhelper"
@@ -20,6 +20,27 @@
 	],
 	"main": "./extension.js",
 	"contributes": {
+		"commands": [
+			{
+				"command": "showProteinStructure",
+				"title": "show selected protein structure",
+				"category": "showProteinStructure"
+			}
+		],
+		"keybindings": [
+			{
+				"command": "iferrblocks.fold",
+				"key": "alt+ctrl+[Period]",
+				"mac": "alt+cmd+[Period]",
+				"when": "editorTextFocus"
+			},
+			{
+				"command": "iferrblocks.unfold",
+				"key": "shift+ctrl+cmd+[Period]",
+				"mac": "shift+alt+cmd+[Period]",
+				"when": "editorTextFocus"
+			}
+		],
 		"configuration": {
 			"type": "object",
 			"title": "GmxLang",
@@ -217,10 +238,6 @@
 		"publisherId": "574ff37d-46e6-43af-ad1a-a37ed7975abf",
 		"publisherDisplayName": "Casea1998",
 		"isPreReleaseVersion": false,
-		"installedTimestamp": 1660871027464,
-		"targetPlatform": "undefined",
-		"isApplicationScoped": false,
-		"updated": true,
-		"preRelease": false
+		"installedTimestamp": 1645249238091
 	}
 }

@@ -5,6 +5,10 @@ All notable changes to the "gmxlang" extension will be documented in this file.
 ## Versions
 
 ---
+## 1.0.11
+
+- fix the problem of changing the theme automaticly
+
 ## 1.0.10
 
 - section folding is supported!
