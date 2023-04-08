@@ -92,8 +92,8 @@
             }
         },
         {
-            "name":"variable.parameter",
-            "scope":"variable.parameter",
+            "name":"variable.parameter.purple",
+            "scope":"variable.parameter.purple",
             "settings":{
                 "fontStyle":"",
                 "foreground":"#A66BDD",
@@ -101,8 +101,8 @@
             }
         },
         {
-            "name":"support.function",
-            "scope":"support.function",
+            "name":"support.function.yellow",
+            "scope":"support.function.yellow",
             "settings":{
                 "fontStyle":"",
                 "foreground":"#C3F709",

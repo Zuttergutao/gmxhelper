@@ -9,7 +9,7 @@ Detailed information on amino acids is provided as a hover when opening the `fas
 
 Detailed information on parameters is provided as a hover when opening the `mdp` file. 
 
-Npw, Section Folding is supported!
+Now, Section Folding is supported!
 
 ## Features
 

@@ -11,7 +11,7 @@
         "structure": {
             "patterns": [
                 {
-                    "name": "support.function",
+                    "name": "support.function.yellow",
                     "match": "\\[.*?\\]"
                 },
                 {

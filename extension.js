@@ -2,6 +2,8 @@
 // Import the module and reference it with the alias vscode in your code below
 const vscode = require('vscode');
 const hover = require("./hover.js");
+const path =require('path');
+const fs = require('fs');
 
 // this method is called when your extension is activated
 // your extension is activated the very first time the command is executed
@@ -9,46 +11,29 @@ const hover = require("./hover.js");
 /**
  * @param {vscode.ExtensionContext} context
  */
-let beforeTheme = vscode.workspace.getConfiguration().get("GmxLang.nonBioTheme");
+
 
 function activate(context) {
     // Use the console to output diagnostic information (console.log) and errors (console.error)
     // This line of code will only be executed once when your extension is activated
     // console.log('Congratulations, your extension "gmxlang" is now active!');
-    let autoTheme = vscode.workspace.getConfiguration().get("GmxLang.autoSwitchTheme");
-    let activeEditor = vscode.window.activeTextEditor;
+
+    // 判断插件是否第一次安装
+    const extensionId = 'Casea1998.gmxlang';
+    const extension = vscode.extensions.getExtension(extensionId);
+    const jsonFilePath = path.join(__dirname, 'syntaxes/color.json');
+    const jsonData = fs.readFileSync(jsonFilePath, 'utf-8');
+    const settings = JSON.parse(jsonData);
+    const config = vscode.workspace.getConfiguration();
+
+    if (!vscode.workspace.getConfiguration("editor.tokenColorCustomizations").has("textMateRules")) {
+        // 如果插件第一次被激活，执行将自定义颜色写入到全局settings中
+        config.update("editor.tokenColorCustomizations", settings, vscode.ConfigurationTarget.Global);
+    }
+
     // hover激活
     context.subscriptions.push(hover);
-    if (activeEditor) {
-        updateDecorations();
-    }
-    vscode.window.onDidChangeActiveTextEditor(editor => {
-        activeEditor = editor;
-        if (editor) {
-            updateDecorations();
-        }
-    }, null, context.subscriptions);
-    vscode.workspace.onDidChangeTextDocument(event => {
-        if (activeEditor && event.document === activeEditor.document) {
-            updateDecorations();
-        }
-    }, null, context.subscriptions);
 
-    function updateDecorations() {
-        if (!activeEditor) {
-            return;
-        }
-        let lang = activeEditor.document.languageId;
-        if (autoTheme) {
-            if (lang === "top" || lang === "pdb" || lang === "gro" || lang === "fasta" ||
-                lang === "itp" || lang === "mdp" || lang === "ndx" || lang === "xvg" || lang === "mol2") {
-                // update theme
-                vscode.workspace.getConfiguration().update("workbench.colorTheme", "gmxLang", true);
-            } else {
-                vscode.workspace.getConfiguration().update("workbench.colorTheme", beforeTheme, true);
-            }
-        }
-    }
     vscode.languages.registerDocumentFormattingEditProvider('mdp', {
         provideDocumentFormattingEdits: function(document) {
             var text = document.getText().split(/[\n\r]+/g);
@@ -68,6 +53,7 @@ function activate(context) {
             return [vscode.TextEdit.replace(range, result.join("\n"))];
         }
     });
+
     vscode.languages.registerDocumentFormattingEditProvider('gro', {
         provideDocumentFormattingEdits: function(document) {
             var text = document.getText().split(/[\n\r]+/g);

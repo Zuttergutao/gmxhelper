@@ -196,12 +196,12 @@
                     "name":"comment.lightblue",
                     "patterns":[
                         {
-                            "name":"variable.parameter",
+                            "name":"variable.parameter.purple",
                             "begin":"(?<=(ORGANISM_SCIENTIFIC:))",
                             "end":"$"
                         },
                         {
-                            "name":"variable.parameter",
+                            "name":"variable.parameter.purple",
                             "begin":"(?<=(EXPRESSION[\\_A-Za-z]+\\:))",
                             "end":"$"
                         }

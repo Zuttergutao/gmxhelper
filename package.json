@@ -3,7 +3,7 @@
 	"displayName": "gmxhelper",
 	"publisher": "Casea1998",
 	"description": "For gromacs language support ",
-	"version": "1.0.11",
+	"version": "1.0.12",
 	"repository": {
 		"type": "git",
 		"url": "https://github.com/Zuttergutao/gmxhelper"
@@ -16,7 +16,15 @@
 		"Programming Languages"
 	],
 	"activationEvents": [
-		"*"
+		"onLanguage:mdp",
+		"onLanguage:pdb",
+		"onLanguage:top",
+		"onLanguage:gro",
+		"onLanguage:itp",
+		"onLanguage:mol2",
+		"onLanguage:ndx",
+		"onLanguage:xvg",
+		"onLanguage:fasta"
 	],
 	"main": "./extension.js",
 	"contributes": {
@@ -24,18 +32,7 @@
 			"type": "object",
 			"title": "GmxLang",
 			"properties": {
-				"GmxLang.nonBioTheme": {
-					"type": "string",
-					"scope": "resource",
-					"default": "Default Dark+",
-					"description": "The theme to use when not viewing a related document. Most people will want to set this to be the same as their 'workbench.colorTheme' setting"
-				},
-				"GmxLang.autoSwitchTheme": {
-					"type": "boolean",
-					"scope": "resource",
-					"default": true,
-					"description": "Enable automatically switching to GMXLANG color theme when opening a related file"
-				}
+
 			}
 		},
 		"languages": [
@@ -190,14 +187,6 @@
 				"language": "mol2",
 				"scopeName": "source.mol2",
 				"path": "./syntaxes/mol2.tmLanguage.json"
-			}
-		],
-		"themes": [
-			{
-				"label": "gmxLang",
-				"id": "gmxLang",
-				"uiTheme": "vs-dark",
-				"path": "./syntaxes/themecolor.json"
 			}
 		],
 		"snippets": [

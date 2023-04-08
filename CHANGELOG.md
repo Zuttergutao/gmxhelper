@@ -5,6 +5,10 @@ All notable changes to the "gmxlang" extension will be documented in this file.
 ## Versions
 
 ---
+## 1.0.12 
+- Now, user can use their favorite themes without changing. 
+  Before, I used a theme to define the tokencolor. The problem also arises, vscode will switch themes with different file format, which sometimes fails. Now, I set the tokencolor to be written to the global settings when the plugin is first installed. 
+
 ## 1.0.11
 
 - fix the problem of changing the theme automaticly
@@ -54,6 +58,13 @@ Also fix bugs
 - Fix some bugs and update the structure.
 
 ---
+
+## 1.0.12 - 2023-04-08
+
+### Added 
+- section folding
+- syntaxes highlighting and hover information for `fasta`
+
 
 ## 1.0.0 - 2022-02-07
 ### Added
