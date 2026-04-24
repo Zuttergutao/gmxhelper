@@ -1,0 +1,123 @@
+{
+	"$schema": "https://raw.githubusercontent.com/martinring/tmlanguage/master/tmlanguage.json",
+	"name": "CIF",
+	"patterns": [
+		{
+			"include": "#comments"
+		},
+		{
+			"include": "#data_blocks"
+		},
+		{
+			"include": "#loops"
+		},
+		{
+			"include": "#data_names"
+		},
+		{
+			"include": "#data_values"
+		},
+		{
+			"include": "#strings"
+		},
+		{
+			"include": "#numbers"
+		}
+	],
+	"repository": {
+		"comments": {
+			"patterns": [
+				{
+					"name": "comment.line.cif",
+					"match": "^\\s*#.*$"
+				}
+			]
+		},
+		"data_blocks": {
+			"patterns": [
+				{
+					"name": "keyword.control.data.cif",
+					"match": "^\\s*data_\\S+"
+				}
+			]
+		},
+		"loops": {
+			"patterns": [
+				{
+					"name": "keyword.control.loop.cif",
+					"match": "^\\s*loop_"
+				}
+			]
+		},
+		"data_names": {
+			"patterns": [
+				{
+					"name": "variable.other.dataname.cif",
+					"match": "_[a-zA-Z0-9_.-]+"
+				}
+			]
+		},
+		"data_values": {
+			"patterns": [
+				{
+					"name": "constant.other.unknown.cif",
+					"match": "\\?"
+				},
+				{
+					"name": "constant.other.missing.cif",
+					"match": "\\."
+				}
+			]
+		},
+		"strings": {
+			"patterns": [
+				{
+					"name": "string.quoted.single.cif",
+					"begin": "'",
+					"end": "'",
+					"patterns": [
+						{
+							"name": "constant.character.escape.cif",
+							"match": "\\\\."
+						}
+					]
+				},
+				{
+					"name": "string.quoted.double.cif",
+					"begin": "\"",
+					"end": "\"",
+					"patterns": [
+						{
+							"name": "constant.character.escape.cif",
+							"match": "\\\\."
+						}
+					]
+				},
+				{
+					"name": "string.unquoted.cif",
+					"begin": ";",
+					"end": "^;",
+					"beginCaptures": {
+						"0": {
+							"name": "punctuation.definition.string.begin.cif"
+						}
+					},
+					"endCaptures": {
+						"0": {
+							"name": "punctuation.definition.string.end.cif"
+						}
+					}
+				}
+			]
+		},
+		"numbers": {
+			"patterns": [
+				{
+					"name": "constant.numeric.cif",
+					"match": "[-+]?\\d*\\.?\\d+([eE][-+]?\\d+)?(\\(\\d+\\))?"
+				}
+			]
+		}
+	},
+	"scopeName": "source.cif"
+}

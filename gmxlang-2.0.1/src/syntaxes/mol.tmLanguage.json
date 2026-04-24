@@ -1,0 +1,121 @@
+{
+	"$schema": "https://raw.githubusercontent.com/martinring/tmlanguage/master/tmlanguage.json",
+	"name": "MOL",
+	"patterns": [
+		{
+			"include": "#header"
+		},
+		{
+			"include": "#counts_line"
+		},
+		{
+			"include": "#atom_block"
+		},
+		{
+			"include": "#bond_block"
+		},
+		{
+			"include": "#properties"
+		},
+		{
+			"include": "#numbers"
+		}
+	],
+	"repository": {
+		"header": {
+			"patterns": [
+				{
+					"name": "comment.line.header.mol",
+					"match": "^.{0,80}$",
+					"captures": {
+						"0": {
+							"name": "string.unquoted.header.mol"
+						}
+					}
+				}
+			]
+		},
+		"counts_line": {
+			"patterns": [
+				{
+					"name": "meta.counts.mol",
+					"match": "^\\s*(\\d{1,3})\\s*(\\d{1,3}).*V2000\\s*$",
+					"captures": {
+						"1": {
+							"name": "constant.numeric.atom-count.mol"
+						},
+						"2": {
+							"name": "constant.numeric.bond-count.mol"
+						}
+					}
+				}
+			]
+		},
+		"atom_block": {
+			"patterns": [
+				{
+					"name": "meta.atom.mol",
+					"match": "^\\s*([-+]?\\d*\\.?\\d+)\\s+([-+]?\\d*\\.?\\d+)\\s+([-+]?\\d*\\.?\\d+)\\s+([A-Z][a-z]?)\\s+.*$",
+					"captures": {
+						"1": {
+							"name": "constant.numeric.coordinate.x.mol"
+						},
+						"2": {
+							"name": "constant.numeric.coordinate.y.mol"
+						},
+						"3": {
+							"name": "constant.numeric.coordinate.z.mol"
+						},
+						"4": {
+							"name": "entity.name.type.element.mol"
+						}
+					}
+				}
+			]
+		},
+		"bond_block": {
+			"patterns": [
+				{
+					"name": "meta.bond.mol",
+					"match": "^\\s*(\\d+)\\s+(\\d+)\\s+(\\d+).*$",
+					"captures": {
+						"1": {
+							"name": "constant.numeric.atom1.mol"
+						},
+						"2": {
+							"name": "constant.numeric.atom2.mol"
+						},
+						"3": {
+							"name": "constant.numeric.bond-type.mol"
+						}
+					}
+				}
+			]
+		},
+		"properties": {
+			"patterns": [
+				{
+					"name": "keyword.control.property.mol",
+					"match": "^M\\s+END\\s*$"
+				},
+				{
+					"name": "keyword.control.property.mol",
+					"match": "^M\\s+CHG.*$"
+				},
+				{
+					"name": "keyword.control.property.mol",
+					"match": "^M\\s+RAD.*$"
+				}
+			]
+		},
+		"numbers": {
+			"patterns": [
+				{
+					"name": "constant.numeric.mol",
+					"match": "[-+]?\\d*\\.?\\d+([eE][-+]?\\d+)?"
+				}
+			]
+		}
+	},
+	"scopeName": "source.mol"
+}

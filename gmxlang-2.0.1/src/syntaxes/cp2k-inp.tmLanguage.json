@@ -1,0 +1,73 @@
+{
+    "patterns": [
+        {
+            "include": "#structure"
+        }
+    ],
+    "$schema": "https://raw.githubusercontent.com/martinring/tmlanguage/master/tmlanguage.json",
+    "scopeName": "source.cp2k-inp",
+    "name": "cp2k-inp",
+    "repository": {
+        "structure": {
+            "patterns": [
+                {
+                    "name": "comment.green.cp2k",
+                    "match": "^#.*$"
+                },
+                {
+                    "name": "comment.green.cp2k",
+                    "match": "!.*$"
+                },
+                {
+                    "name": "comment.grayblue.cp2k",
+                    "begin": "^\\s*&",
+                    "end": "$",
+                    "patterns": [
+                        {
+                            "name": "comment.lightblue.cp2k",
+                            "match": "\\b(GLOBAL|FORCE_EVAL|SUBSYS|CELL|COORD|KIND|DFT|SCF|XC|MOTION|MD|GEO_OPT|VIBRATIONAL_ANALYSIS|PROPERTIES|PRINT)\\b"
+                        }
+                    ]
+                },
+                {
+                    "name": "comment.grayblue.cp2k",
+                    "begin": "^\\s*&END",
+                    "end": "$",
+                    "patterns": [
+                        {
+                            "name": "comment.lightblue.cp2k",
+                            "match": "\\b(GLOBAL|FORCE_EVAL|SUBSYS|CELL|COORD|KIND|DFT|SCF|XC|MOTION|MD|GEO_OPT|VIBRATIONAL_ANALYSIS|PROPERTIES|PRINT)\\b"
+                        }
+                    ]
+                },
+                {
+                    "name": "character.darkyellow.cp2k",
+                    "match": "^\\s*\\b(PROJECT|PRINT_LEVEL|RUN_TYPE|METHOD|A|B|C|PERIODIC|ELEMENT|BASIS_SET|POTENTIAL|CUTOFF|REL_CUTOFF|NGRIDS|MAX_SCF|EPS_SCF|ENSEMBLE|TEMPERATURE|TIMESTEP|STEPS|OPTIMIZER|MAX_ITER|MAX_DR|RMS_DR)\\b"
+                },
+                {
+                    "begin": "^\\s*([A-Z][a-z]?)",
+                    "end": "$",
+                    "name": "character.atom.cp2k",
+                    "patterns": [
+                        {
+                            "name": "constant.character.lightblue.cp2k",
+                            "match": "(\\b|\\-)[0-9]*[.]?[0-9]+([eE](\\+|\\-)?[0-9]*)*"
+                        }
+                    ]
+                },
+                {
+                    "name": "character.atom.cp2k",
+                    "match": "\\b(H|He|Li|Be|B|C|N|O|F|Ne|Na|Mg|Al|Si|P|S|Cl|Ar|K|Ca|Sc|Ti|V|Cr|Mn|Fe|Co|Ni|Cu|Zn|Ga|Ge|As|Se|Br|Kr)\\b"
+                },
+                {
+                    "name": "string.quoted.orange.cp2k",
+                    "match": "\\b(MD|ENERGY|ENERGY_FORCE|GEO_OPT|CELL_OPT|VIBRATIONAL_ANALYSIS|ELECTRONIC_SPECTRA|Quickstep|FIST|QS|GPW|GAPW|XYZ|NONE|LOW|MEDIUM|HIGH|SILENT|NVE|NVT|NPT|BFGS|CG|LBFGS)\\b"
+                },
+                {
+                    "name": "constant.character.lightblue.cp2k",
+                    "match": "(\\b|\\-)[0-9]*[.]?[0-9]+([eE](\\+|\\-)?[0-9]*)*"
+                }
+            ]
+        }
+    }
+}

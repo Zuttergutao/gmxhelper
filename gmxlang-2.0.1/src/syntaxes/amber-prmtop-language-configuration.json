@@ -1,0 +1,9 @@
+{
+	"folding": {
+		"markers": {
+			"start": "^%FLAG\\s+.*$",
+			"end": "^(?=%FLAG)|^(?=%VERSION)|\\Z"
+		},
+		        "offSide": true
+	}
+}

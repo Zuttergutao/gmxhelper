@@ -1,0 +1,29 @@
+{
+    "patterns": [
+        {
+            "include": "#structure"
+        }
+    ],
+    "$schema": "https://raw.githubusercontent.com/martinring/tmlanguage/master/tmlanguage.json",
+    "scopeName": "source.hover",
+    "name": "hover",
+    "repository": {
+        "structure": {
+            "patterns": [
+                {
+                    "begin": "^",
+                    "end": "$",
+                    "name": "character.title",
+                    "patterns": [
+                        {
+                            "name":"water",
+                            "match":"[\\s]+[0-9\\.]+"
+                        }
+                    ]
+                }
+                
+                       
+            ]
+        }
+    }
+}

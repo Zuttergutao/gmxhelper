@@ -1,0 +1,620 @@
+{
+	"name": "gmxlang",
+	"displayName": "gmxhelper",
+	"publisher": "Casea1998",
+	"description": "For gromacs language support ",
+	"version": "2.0.1",
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/Zuttergutao/gmxhelper"
+	},
+	"engines": {
+		"vscode": "^1.25.0"
+	},
+	"icon": "images/logo.png",
+	"categories": [
+		"Programming Languages"
+	],
+	"activationEvents": [
+		"onLanguage:mdp",
+		"onLanguage:pdb",
+		"onLanguage:top",
+		"onLanguage:gro",
+		"onLanguage:itp",
+		"onLanguage:mol2",
+		"onLanguage:ndx",
+		"onLanguage:xvg",
+		"onLanguage:fasta",
+		"onLanguage:xyz",
+		"onLanguage:cif",
+		"onLanguage:sdf",
+		"onLanguage:mol",
+		"onLanguage:amber-in",
+		"onLanguage:amber-out",
+		"onLanguage:amber-prmtop",
+		"onLanguage:amber-rst7",
+		"onLanguage:gjf",
+		"onLanguage:orca-inp",
+		"onLanguage:cp2k-inp",
+		"onLanguage:inp"
+	],
+	"main": "./extension.js",
+	"contributes": {
+		"commands": [
+			{
+				"command": "gmxlang.viewXvgFile",
+				"title": "View XVG File",
+				"category": "GMX"
+			},
+			{
+				"command": "gmxlang.viewGroFile",
+				"title": "View 3D GRO Structure",
+				"category": "GMX"
+			},
+			{
+				"command": "gmxlang.viewPdbFile",
+				"title": "View 3D PDB Structure",
+				"category": "GMX"
+			},
+			{
+				"command": "gmxlang.collapseOutline",
+				"title": "Collapse Outline",
+				"category": "GMX"
+			},
+			{
+				"command": "gmxlang.expandOutline",
+				"title": "Expand Outline",
+				"category": "GMX"
+			},
+			{
+				"command": "gmxlang.foldAllSections",
+				"title": "Fold All Sections",
+				"category": "GMX"
+			},
+			{
+				"command": "gmxlang.unfoldAllSections",
+				"title": "Unfold All Sections",
+				"category": "GMX"
+			},
+			{
+				"command": "gmxlang.viewMol2File",
+				"title": "View 3D MOL2 Structure",
+				"category": "GMX"
+			},
+			{
+				"command": "gmxlang.viewXyzFile",
+				"title": "View 3D XYZ Structure",
+				"category": "GMX"
+			},
+			{
+				"command": "gmxlang.viewCifFile",
+				"title": "View 3D CIF Structure",
+				"category": "GMX"
+			},
+			{
+				"command": "gmxlang.viewSdfFile",
+				"title": "View 3D SDF Structure",
+				"category": "GMX"
+			},
+			{
+				"command": "gmxlang.viewMolFile",
+				"title": "View 3D MOL Structure",
+				"category": "GMX"
+			}
+		],
+		"menus": {
+			"explorer/context": [
+				{
+					"command": "gmxlang.viewXvgFile",
+					"when": "resourceExtname == .xvg",
+					"group": "navigation"
+				},
+				{
+					"command": "gmxlang.viewGroFile",
+					"when": "resourceExtname == .gro",
+					"group": "navigation"
+				},
+				{
+					"command": "gmxlang.viewPdbFile",
+					"when": "resourceExtname == .pdb",
+					"group": "navigation"
+				},
+				{
+					"command": "gmxlang.viewMol2File",
+					"when": "resourceExtname == .mol2",
+					"group": "navigation"
+				},
+				{
+					"command": "gmxlang.viewXyzFile",
+					"when": "resourceExtname == .xyz",
+					"group": "navigation"
+				},
+				{
+					"command": "gmxlang.viewCifFile",
+					"when": "resourceExtname == .cif",
+					"group": "navigation"
+				},
+				{
+					"command": "gmxlang.viewSdfFile",
+					"when": "resourceExtname == .sdf",
+					"group": "navigation"
+				},
+				{
+					"command": "gmxlang.viewMolFile",
+					"when": "resourceExtname == .mol",
+					"group": "navigation"
+				}
+
+			],
+			"editor/title/context": [
+				{
+					"command": "gmxlang.viewXvgFile",
+					"when": "resourceExtname == .xvg",
+					"group": "navigation"
+				},
+				{
+					"command": "gmxlang.viewGroFile",
+					"when": "resourceExtname == .gro",
+					"group": "navigation"
+				},
+				{
+					"command": "gmxlang.viewPdbFile",
+					"when": "resourceExtname == .pdb",
+					"group": "navigation"
+				},
+				{
+					"command": "gmxlang.viewMol2File",
+					"when": "resourceExtname == .mol2",
+					"group": "navigation"
+				},
+				{
+					"command": "gmxlang.viewXyzFile",
+					"when": "resourceExtname == .xyz",
+					"group": "navigation"
+				},
+				{
+					"command": "gmxlang.viewCifFile",
+					"when": "resourceExtname == .cif",
+					"group": "navigation"
+				},
+				{
+					"command": "gmxlang.viewSdfFile",
+					"when": "resourceExtname == .sdf",
+					"group": "navigation"
+				},
+				{
+					"command": "gmxlang.viewMolFile",
+					"when": "resourceExtname == .mol",
+					"group": "navigation"
+				}
+			],
+			"editor/context": [
+				{
+					"command": "gmxlang.foldAllSections",
+					"when": "editorLangId == pdb || editorLangId == gro || editorLangId == itp || editorLangId == top || editorLangId == ndx || editorLangId == amber-prmtop",
+					"group": "gmx_folding"
+				},
+				{
+					"command": "gmxlang.unfoldAllSections",
+					"when": "editorLangId == pdb || editorLangId == gro || editorLangId == itp || editorLangId == top || editorLangId == ndx || editorLangId == amber-prmtop",
+					"group": "gmx_folding"
+				}
+			]
+		},
+		"configuration": {
+			"type": "object",
+			"title": "GmxLang",
+			"properties": {
+				"gmxlang.outline.autoFold": {
+					"type": "boolean",
+					"default": false,
+					"description": "Automatically fold outline sections when opening TOP/ITP/GRO files"
+				},
+				"gmxlang.outline.autoCollapseOutlineView": {
+					"type": "boolean",
+					"default": true,
+					"description": "Automatically collapse the sidebar outline view when opening TOP/ITP/GRO files"
+				},
+				"gmxlang.outline.foldProteinResidues": {
+					"type": "boolean",
+					"default": true,
+					"description": "Automatically fold protein residues in GRO files"
+				},
+				"gmxlang.outline.foldNonImportantSections": {
+					"type": "boolean",
+					"default": true,
+					"description": "Automatically fold non-important sections in TOP/ITP files (bonds, angles, dihedrals, etc.)"
+				}
+			}
+		},
+		"languages": [
+			{
+				"id": "mdp",
+				"aliases": [
+					"mdp"
+				],
+				"extensions": [
+					".mdp"
+				],
+				"configuration": "./src/syntaxes/language-configuration.json"
+			},
+			{
+				"id": "pdb",
+				"aliases": [
+					"pdb"
+				],
+				"extensions": [
+					".pdb"
+				],
+				"configuration": "./src/syntaxes/language-configuration.json"
+			},
+			{
+				"id": "top",
+				"aliases": [
+					"top"
+				],
+				"extensions": [
+					".top"
+				],
+				"configuration": "./src/syntaxes/language-configuration.json"
+			},
+			{
+				"id": "gro",
+				"aliases": [
+					"gro"
+				],
+				"extensions": [
+					".gro"
+				],
+				"configuration": "./src/syntaxes/language-configuration.json"
+			},
+			{
+				"id": "itp",
+				"aliases": [
+					"itp"
+				],
+				"extensions": [
+					".itp"
+				],
+				"configuration": "./src/syntaxes/language-configuration.json"
+			},
+			{
+				"id": "ndx",
+				"aliases": [
+					"ndx"
+				],
+				"extensions": [
+					".ndx"
+				],
+				"configuration": "./src/syntaxes/language-configuration.json"
+			},
+			{
+				"id": "fasta",
+				"aliases": [
+					"fasta"
+				],
+				"extensions": [
+					".fasta"
+				],
+				"configuration": "./src/syntaxes/language-configuration.json"
+			},
+			{
+				"id": "xvg",
+				"aliases": [
+					"xvg"
+				],
+				"extensions": [
+					".xvg"
+				],
+				"configuration": "./src/syntaxes/language-configuration.json"
+			},
+			{
+				"id": "hover",
+				"aliases": [
+					"hover"
+				],
+				"extensions": [
+					".hover"
+				],
+				"configuration": "./src/syntaxes/language-configuration.json"
+			},
+			{
+				"id": "mol2",
+				"aliases": [
+					"mol2"
+				],
+				"extensions": [
+					".mol2"
+				],
+				"configuration": "./src/syntaxes/language-configuration.json"
+			},
+			{
+				"id": "xyz",
+				"aliases": [
+					"xyz"
+				],
+				"extensions": [
+					".xyz"
+				],
+				"configuration": "./src/syntaxes/language-configuration.json"
+			},
+			{
+				"id": "cif",
+				"aliases": [
+					"cif"
+				],
+				"extensions": [
+					".cif"
+				],
+				"configuration": "./src/syntaxes/language-configuration.json"
+			},
+			{
+				"id": "sdf",
+				"aliases": [
+					"sdf"
+				],
+				"extensions": [
+					".sdf"
+				],
+				"configuration": "./src/syntaxes/language-configuration.json"
+			},
+			{
+				"id": "mol",
+				"aliases": [
+					"mol"
+				],
+				"extensions": [
+					".mol"
+				],
+				"configuration": "./src/syntaxes/language-configuration.json"
+			},
+			{
+				"id": "amber-in",
+				"aliases": [
+					"Amber Input"
+				],
+				"extensions": [
+				".in"
+			],
+				"configuration": "./src/syntaxes/language-configuration.json"
+			},
+			{
+				"id": "amber-out",
+				"aliases": [
+					"Amber Output"
+				],
+				"extensions": [
+					".out",
+					".info"
+				],
+				"configuration": "./src/syntaxes/language-configuration.json"
+			},
+			{
+				"id": "amber-prmtop",
+				"aliases": [
+					"Amber Parameter Topology"
+				],
+				"extensions": [
+				".prmtop",
+				".parm7"
+			],
+				"configuration": "./src/syntaxes/amber-prmtop-language-configuration.json"
+			},
+			{
+				"id": "amber-rst7",
+				"aliases": [
+					"Amber Restart"
+				],
+				"extensions": [
+				".rst7",
+				".rst",
+				".inpcrd",
+				".crd"
+			],
+				"configuration": "./src/syntaxes/language-configuration.json"
+			},
+			{
+				"id": "gjf",
+				"aliases": [
+					"Gaussian Input"
+				],
+				"extensions": [
+					".gjf",
+					".com",
+					".g09",
+					".g16"
+				],
+				"configuration": "./src/syntaxes/language-configuration.json"
+			},
+			{
+				"id": "orca-inp",
+				"aliases": [
+					"ORCA Input"
+				],
+				"extensions": [
+					".orca"
+				],
+				"configuration": "./src/syntaxes/language-configuration.json"
+			},
+			{
+				"id": "cp2k-inp",
+				"aliases": [
+					"CP2K Input"
+				],
+				"extensions": [
+					".cp2k"
+				],
+				"configuration": "./src/syntaxes/language-configuration.json"
+			},
+			{
+				"id": "inp",
+				"aliases": [
+					"Quantum Chemistry Input"
+				],
+				"extensions": [
+					".inp"
+				],
+				"configuration": "./src/syntaxes/language-configuration.json"
+			}
+		],
+		"grammars": [
+			{
+				"language": "mdp",
+				"scopeName": "source.mdp",
+				"path": "./src/syntaxes/mdp.tmLanguage.json"
+			},
+			{
+				"language": "pdb",
+				"scopeName": "source.pdb",
+				"path": "./src/syntaxes/pdb.tmLanguage.json"
+			},
+			{
+				"language": "top",
+				"scopeName": "source.top",
+				"path": "./src/syntaxes/top.tmLanguage.json"
+			},
+			{
+				"language": "gro",
+				"scopeName": "source.gro",
+				"path": "./src/syntaxes/gro.tmLanguage.json"
+			},
+			{
+				"language": "itp",
+				"scopeName": "source.itp",
+				"path": "./src/syntaxes/itp.tmLanguage.json"
+			},
+			{
+				"language": "xvg",
+				"scopeName": "source.xvg",
+				"path": "./src/syntaxes/xvg.tmLanguage.json"
+			},
+			{
+				"language": "fasta",
+				"scopeName": "source.fasta",
+				"path": "./src/syntaxes/fasta.tmLanguage.json"
+			},
+			{
+				"language": "hover",
+				"scopeName": "source.hover",
+				"path": "./src/syntaxes/hover.tmLanguage.json"
+			},
+			{
+				"language": "ndx",
+				"scopeName": "source.ndx",
+				"path": "./src/syntaxes/ndx.tmLanguage.json"
+			},
+			{
+				"language": "mol2",
+				"scopeName": "source.mol2",
+				"path": "./src/syntaxes/mol2.tmLanguage.json"
+			},
+			{
+				"language": "xyz",
+				"scopeName": "source.xyz",
+				"path": "./src/syntaxes/xyz.tmLanguage.json"
+			},
+			{
+				"language": "cif",
+				"scopeName": "source.cif",
+				"path": "./src/syntaxes/cif.tmLanguage.json"
+			},
+			{
+				"language": "sdf",
+				"scopeName": "source.sdf",
+				"path": "./src/syntaxes/sdf.tmLanguage.json"
+			},
+			{
+				"language": "mol",
+				"scopeName": "source.mol",
+				"path": "./src/syntaxes/mol.tmLanguage.json"
+			},
+			{
+				"language": "amber-in",
+				"scopeName": "source.amber-in",
+				"path": "./src/syntaxes/amber-in.tmLanguage.json"
+			},
+			{
+				"language": "amber-out",
+				"scopeName": "source.amber-out",
+				"path": "./src/syntaxes/amber-out.tmLanguage.json"
+			},
+			{
+				"language": "amber-prmtop",
+			"scopeName": "source.amber-prmtop",
+			"path": "./src/syntaxes/amber-prmtop.tmLanguage.json"
+		},
+		{
+			"language": "amber-rst7",
+			"scopeName": "source.amber-rst7",
+			"path": "./src/syntaxes/amber-rst7.tmLanguage.json"
+		},
+		{
+			"language": "gjf",
+			"scopeName": "source.gjf",
+			"path": "./src/syntaxes/gjf.tmLanguage.json"
+		},
+		{
+			"language": "orca-inp",
+			"scopeName": "source.orca-inp",
+			"path": "./src/syntaxes/orca-inp.tmLanguage.json"
+		},
+		{
+			"language": "cp2k-inp",
+			"scopeName": "source.cp2k-inp",
+			"path": "./src/syntaxes/cp2k-inp.tmLanguage.json"
+		},
+		{
+			"language": "inp",
+			"scopeName": "source.inp",
+			"path": "./src/syntaxes/inp.tmLanguage.json"
+		}
+		],
+		"snippets": [
+			{
+				"language": "mdp",
+				"path": "./src/config/snippets.json"
+			},
+			{
+				"language": "gjf",
+				"path": "./src/config/quantum-snippets.json"
+			},
+			{
+				"language": "inp",
+				"path": "./src/config/quantum-snippets.json"
+			},
+			{
+				"language": "orca-inp",
+				"path": "./src/config/quantum-snippets.json"
+			},
+			{
+				"language": "cp2k-inp",
+				"path": "./src/config/quantum-snippets.json"
+			}
+		]
+	},
+	"scripts": {
+		"lint": "eslint .",
+		"lint:fix": "eslint . --fix",
+		"pretest": "npm run lint",
+		"test": "node ./test/runTest.js",
+		"watch": "echo 'No TypeScript compilation needed for this project'",
+		"package": "vsce package",
+		"publish": "vsce publish"
+	},
+	"__metadata": {
+		"id": "caff09e2-b306-4ad3-95a4-32ee2446027d",
+		"publisherId": "574ff37d-46e6-43af-ad1a-a37ed7975abf",
+		"publisherDisplayName": "Casea1998",
+		"isPreReleaseVersion": false,
+		"installedTimestamp": 1660871027464,
+		"targetPlatform": "undefined",
+		"isApplicationScoped": false,
+		"updated": true,
+		"preRelease": false
+	},
+	"devDependencies": {
+		"@vscode/test-electron": "^2.5.2",
+		"@vscode/vsce": "^2.22.0",
+		"eslint": "^9.31.0"
+	}
+}

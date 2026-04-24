@@ -1,0 +1,111 @@
+{
+    "patterns": [
+        {
+            "include": "#structure"
+        }
+    ],
+    "$schema": "https://raw.githubusercontent.com/martinring/tmlanguage/master/tmlanguage.json",
+    "scopeName": "source.inp",
+    "name": "inp",
+    "repository": {
+        "structure": {
+            "patterns": [
+                {
+                    "name": "comment.green.inp",
+                    "match": "^#.*$"
+                },
+                {
+                    "name": "constant.numeric.gjf.inp",
+                    "match": "!.*$"
+                },
+                {
+                    "name": "keyword.purple.inp",
+                    "begin": "^!",
+                    "end": "$",
+                    "patterns": [
+                        {
+                            "name": "comment.grayblue.inp",
+                            "match": "\\b(HF|DFT|MP2|CCSD|B3LYP|PBE|BLYP|BP86|M06|wB97X|DLPNO|RI|RIJCOSX)\\b"
+                        },
+                        {
+                            "name": "constant.character.lightblue.inp",
+                            "match": "\\b(STO-3G|3-21G|6-31G|6-311G|cc-pVDZ|cc-pVTZ|def2-SVP|def2-TZVP|def2-QZVP|ma-def2)\\b"
+                        },
+                        {
+                            "name": "character.darkyellow.inp",
+                            "match": "\\b(opt|freq|NumFreq|IRC|scan|NEB|CPCM|SMD|COSMO|pal[0-9]+|TightSCF|SlowConv|LARGEPRINT)\\b"
+                        }
+                    ]
+                },
+                {
+                    "name": "comment.grayblue.inp",
+                    "begin": "^%",
+                    "end": "$",
+                    "patterns": [
+                        {
+                            "name": "comment.lightblue.inp",
+                            "match": "\\b(scf|pal|basis|coords|geom|method|output|plots|tddft|casscf|mrci|loc)\\b"
+                        }
+                    ]
+                },
+                {
+                    "name": "comment.grayblue.inp",
+                    "begin": "^\\s*&",
+                    "end": "$",
+                    "patterns": [
+                        {
+                            "name": "comment.lightblue.inp",
+                            "match": "\\b(GLOBAL|FORCE_EVAL|SUBSYS|CELL|COORD|KIND|DFT|SCF|XC|MOTION|MD|GEO_OPT|VIBRATIONAL_ANALYSIS|PROPERTIES|PRINT)\\b"
+                        }
+                    ]
+                },
+                {
+                    "name": "comment.grayblue.inp",
+                    "begin": "^\\s*&END",
+                    "end": "$",
+                    "patterns": [
+                        {
+                            "name": "comment.lightblue.inp",
+                            "match": "\\b(GLOBAL|FORCE_EVAL|SUBSYS|CELL|COORD|KIND|DFT|SCF|XC|MOTION|MD|GEO_OPT|VIBRATIONAL_ANALYSIS|PROPERTIES|PRINT)\\b"
+                        }
+                    ]
+                },
+                {
+                    "name": "character.darkyellow.inp",
+                    "match": "^\\s*\\b(PROJECT|PRINT_LEVEL|RUN_TYPE|METHOD|A|B|C|PERIODIC|ELEMENT|BASIS_SET|POTENTIAL|CUTOFF|REL_CUTOFF|NGRIDS|MAX_SCF|EPS_SCF|ENSEMBLE|TEMPERATURE|TIMESTEP|STEPS|OPTIMIZER|MAX_ITER|MAX_DR|RMS_DR)\\b"
+                },
+                {
+                    "name": "character.type.inp",
+                    "match": "^\\s*\\*\\s*(xyz|int|gzmt)\\s+[0-9]+\\s+[0-9]+\\s*$"
+                },
+                {
+                    "name": "character.type.inp",
+                    "match": "^\\s*\\*\\s*$"
+                },
+                {
+                    "begin": "^\\s*([A-Z][a-z]?)",
+                    "end": "$",
+                    "name": "character.atom.inp",
+                    "patterns": [
+                        {
+                            "name": "constant.character.lightblue.inp",
+                            "match": "(\\b|\\-)[0-9]*[.]?[0-9]+([eE](\\+|\\-)?[0-9]*)*"
+                        }
+                    ]
+                },
+                {
+                    "name": "character.atom.inp",
+                    "match": "\\b(H|He|Li|Be|B|C|N|O|F|Ne|Na|Mg|Al|Si|P|S|Cl|Ar|K|Ca|Sc|Ti|V|Cr|Mn|Fe|Co|Ni|Cu|Zn|Ga|Ge|As|Se|Br|Kr)\\b"
+                },
+                {
+                    "name": "string.quoted.orange.inp",
+                    "match": "\\b(MD|ENERGY|ENERGY_FORCE|GEO_OPT|CELL_OPT|VIBRATIONAL_ANALYSIS|ELECTRONIC_SPECTRA|Quickstep|FIST|QS|GPW|GAPW|XYZ|NONE|LOW|MEDIUM|HIGH|SILENT|NVE|NVT|NPT|BFGS|CG|LBFGS)\\b"
+                },
+                {
+                    "name": "constant.character.lightblue.inp",
+                    "match": "(\\b|\\-)[0-9]*[.]?[0-9]+([eE](\\+|\\-)?[0-9]*)*"
+                }
+            ]
+        }
+    }
+}

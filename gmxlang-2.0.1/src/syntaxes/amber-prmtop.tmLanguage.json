@@ -1,0 +1,186 @@
+{
+	"$schema": "https://raw.githubusercontent.com/martinring/tmlanguage/master/tmlanguage.json",
+	"name": "amber-prmtop",
+	"scopeName": "source.amber-prmtop",
+	"fileTypes": [
+		"prmtop",
+		"parm7"
+	],
+	"patterns": [
+		{
+			"include": "#comments"
+		},
+		{
+			"include": "#version_info"
+		},
+		{
+			"include": "#flags"
+		},
+		{
+			"include": "#formats"
+		},
+		{
+			"include": "#amino_acids"
+		},
+		{
+			"include": "#atom_names"
+		},
+		{
+			"include": "#atom_types"
+		},
+		{
+			"include": "#numbers"
+		}
+	],
+	"repository": {
+		"comments": {
+			"patterns": [
+				{
+					"name": "comment.green.amber-prmtop",
+					"match": "(;.*$|\\*.*$)"
+				}
+			]
+		},
+		"version_info": {
+			"patterns": [
+				{
+					"name": "character.title.amber-prmtop",
+					"match": "^%VERSION\\s+.*$"
+				}
+			]
+		},
+		"flags": {
+			"patterns": [
+				{
+					"name": "support.function.yellow.amber-prmtop",
+					"match": "^%FLAG\\s+(\\w+).*$",
+					"captures": {
+						"1": {
+							"name": "entity.name.section.amber-prmtop"
+						}
+					}
+				}
+			]
+		},
+		"formats": {
+			"patterns": [
+				{
+					"name": "string.quoted.orange.amber-prmtop",
+					"match": "^%FORMAT\\s*\\(.*\\)\\s*$"
+				}
+			]
+		},
+		"amino_acids": {
+			"patterns": [
+				{
+					"name": "aaA",
+					"match": "\\bALA\\b"
+				},
+				{
+					"name": "aaR",
+					"match": "\\bARG\\b"
+				},
+				{
+					"name": "aaN",
+					"match": "\\bASN\\b"
+				},
+				{
+					"name": "aaD",
+					"match": "\\bASP\\b"
+				},
+				{
+					"name": "aaC",
+					"match": "\\bCYS\\b"
+				},
+				{
+					"name": "aaQ",
+					"match": "\\bGLN\\b"
+				},
+				{
+					"name": "aaE",
+					"match": "\\bGLU\\b"
+				},
+				{
+					"name": "aaG",
+					"match": "\\bGLY\\b"
+				},
+				{
+					"name": "aaH",
+					"match": "\\bHIS\\b"
+				},
+				{
+					"name": "aaI",
+					"match": "\\bILE\\b"
+				},
+				{
+					"name": "aaL",
+					"match": "\\bLEU\\b"
+				},
+				{
+					"name": "aaK",
+					"match": "\\bLYS\\b"
+				},
+				{
+					"name": "aaM",
+					"match": "\\bMET\\b"
+				},
+				{
+					"name": "aaF",
+					"match": "\\bPHE\\b"
+				},
+				{
+					"name": "aaP",
+					"match": "\\bPRO\\b"
+				},
+				{
+					"name": "aaS",
+					"match": "\\bSER\\b"
+				},
+				{
+					"name": "aaT",
+					"match": "\\bTHR\\b"
+				},
+				{
+					"name": "aaW",
+					"match": "\\bTRP\\b"
+				},
+				{
+					"name": "aaY",
+					"match": "\\bTYR\\b"
+				},
+				{
+					"name": "aaV",
+					"match": "\\bVAL\\b"
+				}
+			]
+		},
+		"atom_names": {
+			"patterns": [
+				{
+					"name": "character.atom.amber-prmtop",
+					"match": "\\b[A-Z][A-Z0-9]*\\b"
+				},
+				{
+					"name": "character.ligand.amber-prmtop",
+					"match": "\\b(SOL|WAT|HOH|TIP3|TIP4|SPC|Na\\+|Cl\\-|K\\+|Mg2\\+|Ca2\\+)\\b"
+				}
+			]
+		},
+		"atom_types": {
+			"patterns": [
+				{
+					"name": "character.type.amber-prmtop",
+					"match": "\\b[A-Z][a-z]?[0-9]*\\b"
+				}
+			]
+		},
+		"numbers": {
+			"patterns": [
+				{
+					"name": "constant.character.lightblue.amber-prmtop",
+					"match": "(\\b|\\-)[0-9]*[.]?[0-9]+([eE](\\+|\\-)?[0-9]*)*"
+				}
+			]
+		}
+	}
+}

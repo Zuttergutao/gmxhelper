@@ -1,0 +1,118 @@
+{
+    "patterns": [
+        {
+            "include": "#structure"
+        }
+    ],
+    "$schema": "https://raw.githubusercontent.com/martinring/tmlanguage/master/tmlanguage.json",
+    "scopeName": "source.gjf",
+    "name": "gjf",
+    "repository": {
+        "structure": {
+            "patterns": [
+                {
+                    "name": "comment.green.gjf",
+                    "match": "^!.*$"
+                },
+                {
+                    "name": "keyword.control.directive.gjf",
+                    "match": "(?i)^%(mem|chk|nprocshared|nproc|oldchk|rwf|int|d2e|kjob|subst|nosave|save)\\b",
+                    "captures": {
+                        "1": {
+                            "name": "keyword.control.gjf"
+                        }
+                    }
+                },
+                {
+                    "name": "string.quoted.double.gjf",
+                    "match": "(?<=%mem=)[0-9]+[KMGT]?B?",
+                    "comment": "Memory specification"
+                },
+                {
+                    "name": "string.quoted.double.gjf",
+                    "match": "(?<=%chk=)[^\\s]+\\.(chk|fchk)",
+                    "comment": "Checkpoint file"
+                },
+                {
+                    "name": "constant.numeric.gjf",
+                    "match": "(?<=%nprocshared=|%nproc=)[0-9]+",
+                    "comment": "Number of processors"
+                },
+                {
+                    "name": "keyword.purple.gjf",
+                    "begin": "^#[pP]?",
+                    "end": "$",
+                    "patterns": [
+                        {
+                            "name": "support.function.method.gjf",
+                            "match": "(?i)\\b(HF|B3LYP|PBE1PBE|M06|M06-2X|M06-HF|M06-L|wB97XD|wB97X-D|wb97xd|CCSD|CCSD\\(T\\)|MP2|MP3|MP4|DFT|AM1|PM3|PM6|PM7|MNDO|PDDG|CAM-B3LYP|LC-wPBE|HSE06|PBE0|TPSSh|B97-D|B97-D3)\\b"
+                        },
+                        {
+                            "name": "constant.character.basis.gjf",
+                            "match": "(?i)\\b(STO-3G|3-21G|6-31G|6-31\\+G|6-31G\\*|6-31G\\*\\*|6-31\\+G\\*|6-31\\+G\\*\\*|6-311G|6-311\\+G|6-311G\\*|6-311G\\*\\*|6-311\\+G\\*|6-311\\+G\\*\\*|cc-pVDZ|cc-pVTZ|cc-pVQZ|cc-pV5Z|aug-cc-pVDZ|aug-cc-pVTZ|aug-cc-pVQZ|def2-SVP|def2-SVPD|def2-TZVP|def2-TZVPD|def2-QZVP|LANL2DZ|LANL2MB|SDD|CEP-4G|CEP-31G|CEP-121G)\\b"
+                        },
+                        {
+                            "name": "entity.name.function.keyword.gjf",
+                            "match": "(?i)\\b(opt|freq|TD|TDDFT|IRC|scan|pop|density|out|wfn|chk|fchk|formchk|guess|stable|force|nmr|polar|raman|vcd|ecd|oniom|qst2|qst3|casscf|gvb|dft|int|iop|scf|maxdisk|units|symmetry|charge|multiplicity|temperature|pressure|scale|nosymm|symmetry|geom|gfinput|gfprint|punch|archive|test|external|empiricaldispersion|em)\\b"
+                        },
+                        {
+                            "name": "support.type.solvation.gjf",
+                            "match": "(?i)\\b(scrf|pcm|smd|iefpcm|cpcm|dipole|cosmo)\\b"
+                        },
+                        {
+                            "name": "string.quoted.single.solvent.gjf",
+                            "match": "(?i)\\b(water|methanol|ethanol|acetone|dmso|chloroform|dichloromethane|benzene|toluene|hexane|cyclohexane|thf|acetonitrile|chlorobenzene|nitromethane|pyridine|aniline|phenol|ccl4|cs2|diethylether|dioxane|dmf|formamide|heptane|isooctane|methylenechloride|nitrobenzene|octanol|pentane|propanol|butanol)\\b"
+                        },
+                        {
+                            "name": "constant.character.dispersion.gjf",
+                            "match": "(?i)\\b(GD3|GD3BJ|D3|D3BJ|D2|empiricaldispersion)\\b"
+                        },
+                        {
+                            "name": "constant.numeric.parameter.gjf",
+                            "match": "\\b(nstates|root|singlets|triplets|maxcyc|conver|tight|verytight|loose|veryloose)=[0-9]+\\b"
+                        }
+                    ]
+                },
+                {
+                    "name": "constant.character.charge.gjf",
+                    "match": "^\\s*[\\-\\+]?[0-9]+\\s+[0-9]+\\s*$",
+                    "comment": "Charge and multiplicity"
+                },
+                {
+                    "begin": "^\\s*([A-Z][a-z]?)\\s+",
+                    "end": "$",
+                    "beginCaptures": {
+                        "1": {
+                            "name": "entity.name.type.atom.gjf"
+                        }
+                    },
+                    "patterns": [
+                        {
+                            "name": "constant.numeric.coordinate.gjf",
+                            "match": "[\\-\\+]?[0-9]*\\.?[0-9]+([eE][\\-\\+]?[0-9]+)?"
+                        }
+                    ]
+                },
+                {
+                    "name": "string.quoted.orange.title.gjf",
+                    "match": "^\\s*[A-Za-z][A-Za-z0-9\\s\\-\\_\\(\\)\\[\\]\\{\\}\\.\\,\\;\\:\\'\\\"]*$",
+                    "comment": "Title line"
+                },
+                {
+                    "name": "constant.numeric.gjf",
+                    "match": "([\\-\\+]?[0-9]*\\.?[0-9]+([eE][\\-\\+]?[0-9]+)?)"
+                },
+                {
+                    "name": "string.unquoted.filename.gjf",
+                    "match": "^\\s*\\S+\\.(wfn|fchk|chk|log|out)\\s*$",
+                    "comment": "Output file specification"
+                },
+                {
+                    "name": "comment.line.blank.gjf",
+                    "match": "^\\s*$",
+                    "comment": "Blank lines"
+                }
+            ]
+        }
+    }
+}

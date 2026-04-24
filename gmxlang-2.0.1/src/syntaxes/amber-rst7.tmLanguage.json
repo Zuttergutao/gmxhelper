@@ -1,0 +1,60 @@
+{
+	"$schema": "https://raw.githubusercontent.com/martinring/tmlanguage/master/tmlanguage.json",
+	"name": "amber-rst7",
+	"scopeName": "source.amber-rst7",
+	"fileTypes": [
+		"rst7",
+		"rst",
+		"inpcrd",
+		"crd"
+	],
+	"patterns": [
+		{
+			"include": "#title"
+		},
+		{
+			"include": "#atom_count"
+		},
+		{
+			"include": "#coordinates"
+		}
+	],
+	"repository": {
+		"title": {
+			"patterns": [
+				{
+					"name": "character.title.amber-rst7",
+					"match": "\\A.*$"
+				}
+			]
+		},
+		"atom_count": {
+			"patterns": [
+				{
+					"name": "keyword.purple.amber-rst7",
+					"match": "^\\s*([0-9]+)\\s+([0-9]+\\.[0-9]+E[+-][0-9]+)\\s*$",
+					"captures": {
+						"1": {
+							"name": "keyword.purple.amber-rst7"
+						},
+						"2": {
+							"name": "comment.lightblue.amber-rst7"
+						}
+					}
+				},
+				{
+					"name": "keyword.purple.amber-rst7",
+					"match": "^\\s*[0-9]+\\s*$"
+				}
+			]
+		},
+		"coordinates": {
+			"patterns": [
+				{
+					"name": "constant.character.lightblue.amber-rst7",
+					"match": "\\b-?[0-9]*\\.[0-9]+([eE][+-]?[0-9]+)?\\b"
+				}
+			]
+		}
+	}
+}

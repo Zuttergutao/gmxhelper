@@ -1,0 +1,82 @@
+{
+	"$schema": "https://raw.githubusercontent.com/martinring/tmlanguage/master/tmlanguage.json",
+	"name": "amber-in",
+	"scopeName": "source.amber-in",
+	"fileTypes": [
+		"in",
+		"inp"
+	],
+	"patterns": [
+		{
+			"include": "#comments"
+		},
+		{
+			"include": "#sections"
+		},
+		{
+			"include": "#keywords"
+		},
+		{
+			"include": "#numbers"
+		},
+		{
+			"include": "#strings"
+		}
+	],
+	"repository": {
+		"comments": {
+			"patterns": [
+				{
+					"name": "comment.green.amber-in",
+					"match": "!.*$"
+				}
+			]
+		},
+		"sections": {
+			"patterns": [
+				{
+					"name": "keyword.purple.amber-in",
+					"match": "^\\s*&\\w+"
+				},
+				{
+					"name": "keyword.purple.amber-in",
+					"match": "^\\s*/\\s*$"
+				}
+			]
+		},
+		"keywords": {
+			"patterns": [
+				{
+					"name": "variable.parameter.purple.amber-in",
+					"match": "\\b(imin|irest|ntx|ntb|ntp|barostat|pres0|taup|cut|ntc|ntf|tempi|ntt|gamma_ln|nstlim|dt|ntpr|ntwx|ntwr|ntxo|ioutfm|iwrap|ntr|restraint_wt|restraintmask|igamd|iEP|iED|ntcmdprep|ntcmd|ntebprep|nteb|ntave|irest_gamd|sigma0P|sigma0D|timask1|scmask1|nlig|ibblig|atom_p|atom_l|dblig|icfe|ifsc|gti_cpu_output|gti_add_sc|timask2|scmask2)\\b"
+				}
+			]
+		},
+		"numbers": {
+			"patterns": [
+				{
+					"name": "constant.character.lightblue.amber-in",
+					"match": "\\b-?[0-9]*\\.?[0-9]+([eE][+-]?[0-9]+)?\\b"
+				}
+			]
+		},
+		"strings": {
+			"patterns": [
+				{
+					"name": "string.quoted.orange.amber-in",
+					"begin": "'",
+					"end": "'"
+				},
+				{
+					"name": "string.quoted.orange.amber-in",
+					"begin": "\"",
+					"end": "\""
+				},
+				{
+					"name": "character.darkyellow.amber-in",
+					"match": ":[0-9,-]+"
+				}
+			]
+		}
+	}
+}

@@ -1,0 +1,105 @@
+<svg width="128" height="128" viewBox="0 0 128 128" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <!-- 背景渐变 -->
+    <radialGradient id="bgGradient" cx="50%" cy="30%" r="80%">
+      <stop offset="0%" style="stop-color:#1a365d;stop-opacity:1" />
+      <stop offset="50%" style="stop-color:#2d3748;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#4a5568;stop-opacity:1" />
+    </radialGradient>
+    
+    <!-- 原子渐变 -->
+    <radialGradient id="carbonGradient" cx="30%" cy="30%" r="70%">
+      <stop offset="0%" style="stop-color:#38bdf8;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#0284c7;stop-opacity:1" />
+    </radialGradient>
+    
+    <radialGradient id="oxygenGradient" cx="30%" cy="30%" r="70%">
+      <stop offset="0%" style="stop-color:#fb7185;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#e11d48;stop-opacity:1" />
+    </radialGradient>
+    
+    <radialGradient id="nitrogenGradient" cx="30%" cy="30%" r="70%">
+      <stop offset="0%" style="stop-color:#34d399;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#059669;stop-opacity:1" />
+    </radialGradient>
+    
+    <radialGradient id="hydrogenGradient" cx="30%" cy="30%" r="70%">
+      <stop offset="0%" style="stop-color:#fbbf24;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#d97706;stop-opacity:1" />
+    </radialGradient>
+    
+    <!-- 发光效果 -->
+    <filter id="glow" x="-50%" y="-50%" width="200%" height="200%">
+      <feGaussianBlur stdDeviation="2" result="coloredBlur"/>
+      <feMerge> 
+        <feMergeNode in="coloredBlur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+  </defs>
+  
+  <!-- 背景 -->
+  <rect width="128" height="128" rx="16" fill="url(#bgGradient)"/>
+  
+  <!-- 外层轨道环 -->
+  <g filter="url(#glow)" opacity="0.6">
+    <circle cx="64" cy="64" r="50" fill="none" stroke="#38bdf8" stroke-width="1" stroke-dasharray="3,2"/>
+  </g>
+  
+  <!-- 内层轨道环 -->
+  <g filter="url(#glow)" opacity="0.4">
+    <circle cx="64" cy="64" r="35" fill="none" stroke="#34d399" stroke-width="1" stroke-dasharray="2,3"/>
+  </g>
+  
+  <!-- 中心分子结构 -->
+  <g filter="url(#glow)">
+    <!-- 中心碳原子 -->
+    <circle cx="64" cy="64" r="8" fill="url(#carbonGradient)" stroke="#0284c7" stroke-width="1"/>
+    
+    <!-- 周围原子 -->
+    <circle cx="44" cy="54" r="6" fill="url(#oxygenGradient)" stroke="#e11d48" stroke-width="1"/>
+    <circle cx="84" cy="54" r="6" fill="url(#nitrogenGradient)" stroke="#059669" stroke-width="1"/>
+    <circle cx="44" cy="74" r="5" fill="url(#hydrogenGradient)" stroke="#d97706" stroke-width="1"/>
+    <circle cx="84" cy="74" r="5" fill="url(#hydrogenGradient)" stroke="#d97706" stroke-width="1"/>
+    
+    <!-- 化学键 -->
+    <line x1="64" y1="64" x2="44" y2="54" stroke="#e2e8f0" stroke-width="2" opacity="0.8"/>
+    <line x1="64" y1="64" x2="84" y2="54" stroke="#e2e8f0" stroke-width="2" opacity="0.8"/>
+    <line x1="64" y1="64" x2="44" y2="74" stroke="#e2e8f0" stroke-width="1.5" opacity="0.6"/>
+    <line x1="64" y1="64" x2="84" y2="74" stroke="#e2e8f0" stroke-width="1.5" opacity="0.6"/>
+  </g>
+  
+  <!-- 动态粒子 -->
+  <g opacity="0.7">
+    <circle cx="30" cy="30" r="2" fill="#38bdf8"/>
+    <circle cx="98" cy="30" r="2" fill="#fb7185"/>
+    <circle cx="30" cy="98" r="2" fill="#34d399"/>
+    <circle cx="98" cy="98" r="2" fill="#fbbf24"/>
+  </g>
+  
+  <!-- GMX 标识 -->
+  <g transform="translate(64, 100)" text-anchor="middle">
+    <text x="0" y="0" font-family="Arial, sans-serif" font-size="14" font-weight="bold" fill="#e2e8f0">
+      GMX
+    </text>
+  </g>
+  
+  <!-- Helper 标识 -->
+  <g transform="translate(64, 115)" text-anchor="middle">
+    <text x="0" y="0" font-family="Arial, sans-serif" font-size="8" fill="#94a3b8">
+      HELPER
+    </text>
+  </g>
+  
+  <!-- 代码符号 -->
+  <g transform="translate(20, 20)" opacity="0.6">
+    <text x="0" y="0" font-family="monospace" font-size="12" fill="#38bdf8">&lt;/&gt;</text>
+  </g>
+  
+  <!-- 分子动力学符号 -->
+  <g transform="translate(100, 20)" opacity="0.6">
+    <path d="M0,0 Q5,5 10,0 Q15,5 20,0" stroke="#34d399" stroke-width="1.5" fill="none"/>
+    <circle cx="5" cy="0" r="1" fill="#34d399"/>
+    <circle cx="15" cy="0" r="1" fill="#34d399"/>
+  </g>
+</svg>

@@ -1,0 +1,266 @@
+{
+	"gaussian_dft_opt": {
+		"prefix": [
+			"g16-opt",
+			"gaussian-opt",
+			"dft-opt"
+		],
+		"body": [
+			"# B3LYP/6-31G(d) opt",
+			"",
+			"${1:Title}",
+			"",
+			"${2:0} ${3:1}",
+			"${4:C    0.000000    0.000000    0.000000}",
+			"${5:H    1.000000    0.000000    0.000000}",
+			"",
+			"$0"
+		],
+		"description": "Gaussian DFT geometry optimization template"
+	},
+	"gaussian_freq": {
+		"prefix": [
+			"g16-freq",
+			"gaussian-freq",
+			"frequency"
+		],
+		"body": [
+			"# B3LYP/6-31G(d) opt freq",
+			"",
+			"${1:Frequency calculation}",
+			"",
+			"${2:0} ${3:1}",
+			"${4:coordinates}",
+			"",
+			"$0"
+		],
+		"description": "Gaussian frequency calculation template"
+	},
+	"gaussian_td": {
+		"prefix": [
+			"g16-td",
+			"gaussian-td",
+			"tddft"
+		],
+		"body": [
+			"# B3LYP/6-31G(d) TD(nstates=${1:10})",
+			"",
+			"${2:TD-DFT calculation}",
+			"",
+			"${3:0} ${4:1}",
+			"${5:coordinates}",
+			"",
+			"$0"
+		],
+		"description": "Gaussian TD-DFT calculation template"
+	},
+	"orca_dft_opt": {
+		"prefix": [
+			"orca-opt",
+			"orca-dft"
+		],
+		"body": [
+			"! B3LYP def2-SVP opt",
+			"",
+			"* xyz ${1:0} ${2:1}",
+			"${3:C    0.000000    0.000000    0.000000}",
+			"${4:H    1.000000    0.000000    0.000000}",
+			"*",
+			"$0"
+		],
+		"description": "ORCA DFT geometry optimization template"
+	},
+	"orca_freq": {
+		"prefix": [
+			"orca-freq",
+			"orca-frequency"
+		],
+		"body": [
+			"! B3LYP def2-SVP opt freq",
+			"",
+			"* xyz ${1:0} ${2:1}",
+			"${3:coordinates}",
+			"*",
+			"$0"
+		],
+		"description": "ORCA frequency calculation template"
+	},
+	"orca_tddft": {
+		"prefix": [
+			"orca-td",
+			"orca-tddft"
+		],
+		"body": [
+			"! B3LYP def2-SVP",
+			"",
+			"%tddft",
+			"  nroots ${1:10}",
+			"  maxdim ${2:5}",
+			"end",
+			"",
+			"* xyz ${3:0} ${4:1}",
+			"${5:coordinates}",
+			"*",
+			"$0"
+		],
+		"description": "ORCA TD-DFT calculation template"
+	},
+	"cp2k_dft": {
+		"prefix": [
+			"cp2k-dft",
+			"cp2k-scf"
+		],
+		"body": [
+			"&GLOBAL",
+			"  PROJECT ${1:project_name}",
+			"  RUN_TYPE ENERGY",
+			"  PRINT_LEVEL MEDIUM",
+			"&END GLOBAL",
+			"",
+			"&FORCE_EVAL",
+			"  METHOD Quickstep",
+			"  &DFT",
+			"    BASIS_SET_FILE_NAME BASIS_MOLOPT",
+			"    POTENTIAL_FILE_NAME GTH_POTENTIALS",
+			"    &MGRID",
+			"      CUTOFF ${2:400}",
+			"      REL_CUTOFF ${3:60}",
+			"    &END MGRID",
+			"    &QS",
+			"      EPS_DEFAULT 1.0E-12",
+			"    &END QS",
+			"    &SCF",
+			"      SCF_GUESS ATOMIC",
+			"      EPS_SCF 1.0E-6",
+			"      MAX_SCF 300",
+			"    &END SCF",
+			"    &XC",
+			"      &XC_FUNCTIONAL PBE",
+			"      &END XC_FUNCTIONAL",
+			"    &END XC",
+			"  &END DFT",
+			"  &SUBSYS",
+			"    &CELL",
+			"      A ${4:10.0} 0.0 0.0",
+			"      B 0.0 ${5:10.0} 0.0",
+			"      C 0.0 0.0 ${6:10.0}",
+			"    &END CELL",
+			"    &COORD",
+			"      ${7:C    0.000000    0.000000    0.000000}",
+			"      ${8:H    1.000000    0.000000    0.000000}",
+			"    &END COORD",
+			"    &KIND C",
+			"      BASIS_SET DZVP-MOLOPT-SR-GTH",
+			"      POTENTIAL GTH-PBE-q4",
+			"    &END KIND",
+			"    &KIND H",
+			"      BASIS_SET DZVP-MOLOPT-SR-GTH",
+			"      POTENTIAL GTH-PBE-q1",
+			"    &END KIND",
+			"  &END SUBSYS",
+			"&END FORCE_EVAL",
+			"$0"
+		],
+		"description": "CP2K DFT single point energy calculation template"
+	},
+	"cp2k_opt": {
+		"prefix": [
+			"cp2k-opt",
+			"cp2k-geo-opt"
+		],
+		"body": [
+			"&GLOBAL",
+			"  PROJECT ${1:project_name}",
+			"  RUN_TYPE GEO_OPT",
+			"  PRINT_LEVEL MEDIUM",
+			"&END GLOBAL",
+			"",
+			"&MOTION",
+			"  &GEO_OPT",
+			"    OPTIMIZER BFGS",
+			"    MAX_ITER ${2:200}",
+			"    MAX_DR ${3:3.0E-3}",
+			"    MAX_FORCE ${4:4.5E-4}",
+			"    RMS_DR ${5:1.5E-3}",
+			"    RMS_FORCE ${6:3.0E-4}",
+			"  &END GEO_OPT",
+			"&END MOTION",
+			"",
+			"&FORCE_EVAL",
+			"  METHOD Quickstep",
+			"  &DFT",
+			"    BASIS_SET_FILE_NAME BASIS_MOLOPT",
+			"    POTENTIAL_FILE_NAME GTH_POTENTIALS",
+			"    &MGRID",
+			"      CUTOFF ${7:400}",
+			"      REL_CUTOFF ${8:60}",
+			"    &END MGRID",
+			"    &QS",
+			"      EPS_DEFAULT 1.0E-12",
+			"    &END QS",
+			"    &SCF",
+			"      SCF_GUESS ATOMIC",
+			"      EPS_SCF 1.0E-6",
+			"      MAX_SCF 300",
+			"    &END SCF",
+			"    &XC",
+			"      &XC_FUNCTIONAL PBE",
+			"      &END XC_FUNCTIONAL",
+			"    &END XC",
+			"  &END DFT",
+			"  &SUBSYS",
+			"    &CELL",
+			"      A ${9:10.0} 0.0 0.0",
+			"      B 0.0 ${10:10.0} 0.0",
+			"      C 0.0 0.0 ${11:10.0}",
+			"    &END CELL",
+			"    &COORD",
+			"      ${12:coordinates}",
+			"    &END COORD",
+			"    ${13:&KIND definitions}",
+			"  &END SUBSYS",
+			"&END FORCE_EVAL",
+			"$0"
+		],
+		"description": "CP2K geometry optimization template"
+	},
+	"cp2k_md": {
+		"prefix": [
+			"cp2k-md",
+			"cp2k-molecular-dynamics"
+		],
+		"body": [
+			"&GLOBAL",
+			"  PROJECT ${1:project_name}",
+			"  RUN_TYPE MD",
+			"  PRINT_LEVEL MEDIUM",
+			"&END GLOBAL",
+			"",
+			"&MOTION",
+			"  &MD",
+			"    ENSEMBLE ${2:NVT}",
+			"    STEPS ${3:1000}",
+			"    TIMESTEP ${4:0.5}",
+			"    TEMPERATURE ${5:300.0}",
+			"    &THERMOSTAT",
+			"      TYPE NOSE",
+			"      &NOSE",
+			"        LENGTH 3",
+			"        YOSHIDA 3",
+			"        TIMECON ${6:100.0}",
+			"        MTS 2",
+			"      &END NOSE",
+			"    &END THERMOSTAT",
+			"  &END MD",
+			"&END MOTION",
+			"",
+			"&FORCE_EVAL",
+			"  METHOD Quickstep",
+			"  ${7:DFT settings}",
+			"  ${8:SUBSYS settings}",
+			"&END FORCE_EVAL",
+			"$0"
+		],
+		"description": "CP2K molecular dynamics template"
+	}
+}

@@ -1,0 +1,124 @@
+{
+	"$schema": "https://raw.githubusercontent.com/martinring/tmlanguage/master/tmlanguage.json",
+	"name": "amber-out",
+	"scopeName": "source.amber-out",
+	"fileTypes": [
+		"out",
+		"info"
+	],
+	"patterns": [
+		{
+			"include": "#headers"
+		},
+		{
+			"include": "#file_assignments"
+		},
+		{
+			"include": "#energy_terms"
+		},
+		{
+			"include": "#timing_info"
+		},
+		{
+			"include": "#numbers"
+		},
+		{
+			"include": "#file_paths"
+		},
+		{
+			"include": "#comments"
+		},
+		{
+			"include": "#energy_lines"
+		},
+		{
+			"include": "#separators"
+		}
+	],
+	"repository": {
+		"headers": {
+			"patterns": [
+				{
+					"name": "character.title.amber-out",
+					"match": "^\\s*-+.*-+\\s*$"
+				},
+				{
+					"name": "character.title.amber-out",
+					"match": "^\\s*Amber [0-9]+ .*$"
+				},
+				{
+					"name": "character.title.amber-out",
+					"match": "^\\|.*\\|\\s*$"
+				}
+			]
+		},
+		"file_assignments": {
+			"patterns": [
+				{
+					"name": "keyword.purple.amber-out",
+					"match": "^\\s*(MDIN|MDOUT|INPCRD|PARM|RESTRT|REFC|MDVEL|MDEN|MDCRD|MDINFO|MDFRC):"
+				}
+			]
+		},
+		"energy_terms": {
+			"patterns": [
+				{
+					"name": "variable.parameter.purple.amber-out",
+					"match": "\\b(NSTEP|TIME|TEMP|PRESS|Etot|EKtot|EPtot|BOND|ANGLE|DIHED|1-4 NB|1-4 EEL|VDWAALS|EELEC|EHBOND|RESTRAINT|EAMBER|EKCMT|VIRIAL|VOLUME|Density|DV/DL)\\b"
+				}
+			]
+		},
+		"timing_info": {
+			"patterns": [
+				{
+					"name": "support.function.yellow.amber-out",
+					"match": "\\b(Total steps|Completed|Remaining|Average timings|Elapsed|Per Step|ns/day|seconds/ns|Estimated time remaining)\\b"
+				}
+			]
+		},
+		"numbers": {
+			"patterns": [
+				{
+					"name": "constant.character.lightblue.amber-out",
+					"match": "\\b-?[0-9]*\\.?[0-9]+([eE][+-]?[0-9]+)?\\b"
+				}
+			]
+		},
+		"file_paths": {
+			"patterns": [
+				{
+					"name": "string.quoted.orange.amber-out",
+					"match": "/[^\\s]+\\.[a-zA-Z0-9]+"
+				},
+				{
+					"name": "string.quoted.orange.amber-out",
+					"match": "[a-zA-Z_][a-zA-Z0-9_]*\\.[a-zA-Z0-9]+"
+				}
+			]
+		},
+		"comments": {
+			"patterns": [
+				{
+					"name": "comment.green.amber-out",
+					"match": "^\\s*Note:.*$"
+				}
+			]
+		},
+		"energy_lines": {
+			"patterns": [
+				{
+					"name": "keyword.purple.amber-out",
+					"match": "^\\s*(NSTEP|TIME|TEMP|PRESS|Etot|EKtot|EPtot)\\s*="
+				}
+			]
+		},
+		"separators": {
+			"patterns": [
+				{
+					"name": "comment.green.amber-out",
+					"match": "^\\s*-+\\s*$"
+				}
+			]
+		}
+	}
+}

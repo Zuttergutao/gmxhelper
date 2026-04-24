@@ -1,0 +1,77 @@
+{
+    "patterns": [
+        {
+            "include": "#structure"
+        }
+    ],
+    "$schema": "https://raw.githubusercontent.com/martinring/tmlanguage/master/tmlanguage.json",
+    "scopeName": "source.orca-inp",
+    "name": "orca-inp",
+    "repository": {
+        "structure": {
+            "patterns": [
+                {
+                    "name": "comment.green.orca",
+                    "match": "^#.*$"
+                },
+                {
+                    "name": "constant.numeric.gjf.orca",
+                    "begin": "^!",
+                    "end": "$",
+                    "patterns": [
+                        {
+                            "name": "support.function.yellow.orca",
+                            "match": "\\b(HF|DFT|MP2|CCSD|B3LYP|PBE|BLYP|BP86|M06|wB97X|DLPNO|RI|RIJCOSX)\\b"
+                        },
+                        {
+                            "name": "constant.character.lightblue.orca",
+                            "match": "\\b(STO-3G|3-21G|6-31G|6-311G|cc-pVDZ|cc-pVTZ|def2-SVP|def2-TZVP|def2-QZVP|ma-def2)\\b"
+                        },
+                        {
+                            "name": "character.darkyellow.orca",
+                            "match": "\\b(opt|freq|NumFreq|IRC|scan|NEB|CPCM|SMD|COSMO|pal[0-9]+|TightSCF|SlowConv|LARGEPRINT)\\b"
+                        }
+                    ]
+                },
+                {
+                    "name": "support.function.yellow.orca",
+                    "begin": "^%",
+                    "end": "$",
+                    "patterns": [
+                        {
+                            "name": "keyword.purple.orca",
+                            "match": "\\b(scf|pal|basis|coords|geom|method|output|plots|tddft|casscf|mrci|loc)\\b"
+                        }
+                    ]
+                },
+                {
+                    "name": "character.type.orca",
+                    "match": "^\\s*\\*\\s*(xyz|int|gzmt)\\s+[0-9]+\\s+[0-9]+\\s*$"
+                },
+                {
+                    "name": "character.type.orca",
+                    "match": "^\\s*\\*\\s*$"
+                },
+                {
+                    "begin": "^\\s*([A-Z][a-z]?)",
+                    "end": "$",
+                    "name": "character.atom.orca",
+                    "patterns": [
+                        {
+                            "name": "constant.character.lightblue.orca",
+                            "match": "(\\b|\\-)[0-9]*[.]?[0-9]+([eE](\\+|\\-)?[0-9]*)*"
+                        }
+                    ]
+                },
+                {
+                    "name": "character.atom.orca",
+                    "match": "\\b(H|He|Li|Be|B|C|N|O|F|Ne|Na|Mg|Al|Si|P|S|Cl|Ar|K|Ca|Sc|Ti|V|Cr|Mn|Fe|Co|Ni|Cu|Zn|Ga|Ge|As|Se|Br|Kr)\\b"
+                },
+                {
+                    "name": "constant.character.lightblue.orca",
+                    "match": "(\\b|\\-)[0-9]*[.]?[0-9]+([eE](\\+|\\-)?[0-9]*)*"
+                }
+            ]
+        }
+    }
+}

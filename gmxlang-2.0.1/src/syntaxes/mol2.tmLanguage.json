@@ -1,0 +1,56 @@
+{
+    "patterns": [
+        {
+            "include": "#structure"
+        }
+    ],
+    "$schema": "https://raw.githubusercontent.com/martinring/tmlanguage/master/tmlanguage.json",
+    "scopeName": "source.mol2",
+    "name": "mol2",
+    "repository": {
+        "structure": {
+            "patterns": [
+                {
+                    "begin":"^[a-zA-Z]+",
+                    "end":"$",
+                    "name":"support.function"
+                },
+                {
+                    "begin":"^#",
+                    "end":"$",
+                    "name":"comment.green"
+                },
+                {
+                    "begin": "^@",
+                    "end": "$",
+                    "name": "string.quoted.orange",
+                    "patterns": [
+                        {
+                            "match": "(?<=(>))[A-Za-z\\_]+",
+                            "name": "keyword.purple"
+                        }
+                    ]
+                },
+                {
+                    "begin":"^[\\s0-9]+",
+                    "end":"$",
+                    "name":"constant.character.lightblue",
+                    "patterns":[
+                        {
+                            "match":"(?<=[0-9]+[\\s]+)[a-zA-Z0-9]+(?=([\\s]+[\\-0-9\\.]+[\\s]+[\\-0-9\\.]+))",
+                            "name":"character.atom"
+                        },
+                        {
+                            "name":"character.type",
+                            "match":"(?<=[\\s]+[\\-0-9\\.]+[\\s]+[\\-0-9\\.]+[\\s]+)[a-zA-Z0-9\\_\\.]+((?=([\\s]+[0-9]+[\\s]+[a-zA-Z0-9\\_]+[\\s]+[\\.0-9\\-]+[\\s\\*]*$))|(?=[\\s]*$))"
+                        },
+                        {
+                            "match":"(?<=[0-9]+[\\s]+)[a-zA-Z0-9\\_]+(?=([\\s]+[\\-0-9]+[0-9\\.]+[\\s\\*]*$))",
+                            "name":"protein.sheet"
+                        }
+                    ]
+                }
+            ]
+        }
+    }
+}
